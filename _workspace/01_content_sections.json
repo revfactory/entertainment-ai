@@ -1,0 +1,226 @@
+{
+  "sections": [
+    {
+      "id": "executive-summary",
+      "title": "Executive Summary",
+      "level": 2,
+      "content_html": "<p><strong>핵심 메시지 3가지:</strong></p>\n<ol>\n<li><strong>시장</strong>: 글로벌 엔터테인먼트 AI 시장은 2024년 <strong>82~260억 달러</strong> 규모이며, 2030년 <strong>995억 달러</strong>(CAGR 24.2%)로 성장 전망 <sup><a href=\"#fn1\">1</a></sup><sup><a href=\"#fn2\">2</a></sup></li>\n<li><strong>전환점</strong>: OpenAI Sora 전격 종료(2026.03)와 AI 음악 라이선스 합의가 시장 구조를 재편 중 — <strong>단일 벤더 의존은 사업 연속성 리스크</strong></li>\n<li><strong>즉시 과제</strong>: 한국 AI 기본법(2026.01 시행)과 EU AI Act(2026.08 시행)에 대한 <strong>컴플라이언스 대응이 긴급</strong></li>\n</ol>\n<p><strong>필요 의사결정:</strong></p>\n<ul>\n<li>AI 더빙/로컬라이제이션 파일럿 착수 승인 (Q2)</li>\n<li>AI 기본법 대응 TF 구성 (즉시)</li>\n<li>AI 벤더 멀티소싱 전략 승인</li>\n</ul>",
+      "subsections": []
+    },
+    {
+      "id": "strategic-context",
+      "title": "1. Strategic Context: 시장 환경",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "global-market",
+          "title": "1.1 글로벌 시장 규모",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>출처</th><th>2024년</th><th>2030년 전망</th><th>CAGR</th></tr>\n</thead>\n<tbody>\n<tr><td><strong>Grand View Research</strong></td><td>259.8억$</td><td>994.8억$</td><td>24.2%</td></tr>\n<tr><td><strong>MarketsandMarkets</strong></td><td>82.1억$</td><td>510.8억$</td><td>35.6%</td></tr>\n</tbody>\n</table>\n<blockquote><p>⚠️ 두 기관의 시장 범위 정의가 상이합니다. GVR은 미디어&amp;엔터 전반의 AI 적용을, MnM은 좁은 정의의 엔터테인먼트 AI를 산정합니다. 의사결정 시 <strong>GVR 기준을 권장</strong>합니다. <sup><a href=\"#fn1\">1</a></sup><sup><a href=\"#fn2\">2</a></sup></p></blockquote>\n<p><strong>보조 전망 데이터:</strong></p>\n<ul>\n<li><strong>PwC</strong>: AI가 2030년까지 글로벌 GDP에 15.7조 달러 기여, 엔터테인먼트가 주요 수혜 산업 <sup><a href=\"#fn3\">3</a></sup></li>\n<li><strong>McKinsey</strong>: 생성형 AI가 미디어/엔터 산업에서 연간 <strong>800억~1,300억 달러</strong> 생산성 향상 가능 <sup><a href=\"#fn4\">4</a></sup></li>\n<li><strong>AlixPartners</strong>: 2026년 미디어&amp;엔터 M&amp;A 규모 <strong>800억 달러 이상</strong> 전망, AI 역량이 딜의 25% 차지 <sup><a href=\"#fn5\">5</a></sup></li>\n</ul>"
+        },
+        {
+          "id": "regional-market",
+          "title": "1.2 지역별 시장",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>지역</th><th>점유율</th><th>CAGR</th><th>핵심 동인</th></tr>\n</thead>\n<tbody>\n<tr><td>북미</td><td>~40%</td><td>~24%</td><td>할리우드 스튜디오, Big Tech(Netflix, Google, Meta)</td></tr>\n<tr><td>아시아태평양</td><td>~30%</td><td>~30%+</td><td>K-콘텐츠, 중국 ByteDance/Tencent, 일본 애니메이션</td></tr>\n<tr><td>유럽</td><td>~20%</td><td>~22%</td><td>EU AI Act 규제 선도, BBC/ITV AI 도입</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "market-signals",
+          "title": "1.3 2026 Q1 시장 전환 시그널",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>시그널</th><th>영향도</th><th>상세</th></tr>\n</thead>\n<tbody>\n<tr><td>🔴 <strong>Sora 서비스 종료</strong> (2026.03.24)</td><td>극대</td><td>Disney 10억$ 투자 무산, 텍스트-to-비디오 시장 재편 <sup><a href=\"#fn6\">6</a></sup></td></tr>\n<tr><td>🔴 <strong>AI 음악 라이선스 합의</strong></td><td>극대</td><td>Warner-Suno/Udio 합의, \"무단 학습→라이선스\" 전환 <sup><a href=\"#fn7\">7</a></sup></td></tr>\n<tr><td>🔴 <strong>ElevenLabs 110억$ 밸류에이션</strong></td><td>대</td><td>음성 AI 단일 기업 엔터 AI 최대 규모, Series D $5억 <sup><a href=\"#fn8\">8</a></sup></td></tr>\n<tr><td>🔴 <strong>한국 AI 기본법 시행</strong> (2026.01)</td><td>대</td><td>아태 최초 포괄 AI 입법, 라벨링 의무 <sup><a href=\"#fn9\">9</a></sup></td></tr>\n<tr><td>🟡 <strong>AI 장편 영화 극장 개봉</strong></td><td>중</td><td>Post Truth 개봉, Critterz 칸 프리미어 <sup><a href=\"#fn10\">10</a></sup></td></tr>\n<tr><td>🟡 <strong>AI NPC 상용 배포</strong></td><td>중</td><td>PUBG Ally, inZOI Smart Zoi 실서비스 <sup><a href=\"#fn11\">11</a></sup></td></tr>\n</tbody>\n</table>"
+        }
+      ]
+    },
+    {
+      "id": "technology-landscape",
+      "title": "2. Technology Landscape: 기술 성숙도 매트릭스",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "tech-maturity",
+          "title": "2.1 기술별 성숙도 평가",
+          "content_html": "<img src=\"images/tech_maturity_matrix.png\" alt=\"Technology Maturity Matrix\" class=\"report-image\">\n<table class=\"report-table\">\n<thead>\n<tr><th>기술</th><th>단계</th><th>전략적 의미</th></tr>\n</thead>\n<tbody>\n<tr><td><strong>AI 추천 엔진</strong></td><td>성숙</td><td>테이블 스테이크. 차별화는 \"더 깊은 개인화\"에서 발생</td></tr>\n<tr><td><strong>AI 업스케일링</strong></td><td>성숙</td><td>DLSS 4.5 250개+ 게임 지원. 자체 개발 불필요</td></tr>\n<tr><td><strong>AI 더빙/로컬라이제이션</strong></td><td>주류 채택</td><td>⭐ <strong>지금 가장 빠르게 성장하는 영역</strong>. 6개월 내 파일럿 필수</td></tr>\n<tr><td><strong>AI 음악 생성</strong></td><td>초기→주류 전환</td><td>라이선스 합의로 기업 도입 장벽 급락. 시장 52억$→604억$(2034)</td></tr>\n<tr><td><strong>AI NPC</strong></td><td>초기 상용화</td><td>200ms 레이턴시 달성. 게임사 파일럿 시작 시점</td></tr>\n<tr><td><strong>AI 영상 생성</strong></td><td>초기 상용화 (불안정)</td><td>Sora 종료로 시장 1위 부재. 멀티벤더 전략 필수</td></tr>\n<tr><td><strong>AI 장편 영화</strong></td><td>실험→초기</td><td>제작비 1/5~1/10. 중소 스튜디오에 파괴적 기회</td></tr>\n<tr><td><strong>AI 에이전트</strong></td><td>실험</td><td>2026년 원년. Gartner: 연말 기업 앱 40% 통합 전망</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "build-vs-buy",
+          "title": "2.2 Build vs Buy 판단 가이드",
+          "content_html": "<img src=\"images/build_vs_buy.png\" alt=\"Build vs Buy Decision Framework\" class=\"report-image\">\n<table class=\"report-table\">\n<thead>\n<tr><th>판단</th><th>기술</th><th>핵심 이유</th></tr>\n</thead>\n<tbody>\n<tr><td><strong>Buy</strong></td><td>업스케일링, 음성/더빙, 영상 생성, QA</td><td>자체 개발 ROI 없음. Sora조차 비용 감당 못함</td></tr>\n<tr><td><strong>Build</strong></td><td>추천 엔진, IP/캐릭터 관리, 콘텐츠 분석</td><td>자사 데이터가 핵심 자산. 외부 위탁 시 경쟁력 유출</td></tr>\n<tr><td><strong>Hybrid</strong></td><td>NPC AI, 음악 생성, AI 에이전트</td><td>API로 파일럿 → 자사 데이터로 파인튜닝 → 점진적 내재화</td></tr>\n</tbody>\n</table>\n<blockquote><p><strong>제1 원칙</strong>: \"핵심 데이터를 누가 소유하는가?\"를 판단 기준으로 삼으십시오.</p></blockquote>"
+        }
+      ]
+    },
+    {
+      "id": "sector-trends",
+      "title": "3. 분야별 핵심 동향",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "film-production",
+          "title": "3.1 영화/영상 제작",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>기술</th><th>현황</th><th>비용 효과</th></tr>\n</thead>\n<tbody>\n<tr><td>AI VFX/디에이징</td><td>「히어」(Metaphysic), 「인디아나 존스」(ILM) 등 상용</td><td><strong>30~70% 비용 절감</strong></td></tr>\n<tr><td>AI 영상 생성</td><td>Sora 종료 → Runway Gen-4, Google Veo 3.1, Adobe Firefly 경쟁</td><td>「더 크리에이터」: 8천만$로 2~3억$급 비주얼</td></tr>\n<tr><td>AI 편집</td><td>Adobe Premiere AI, DaVinci Neural Engine 성숙</td><td>즉시 도입 가능</td></tr>\n<tr><td>AI 장편 영화</td><td>Critterz(3천만$/9개월), Post Truth 극장 개봉 완료</td><td>제작비 <strong>1/5~1/10</strong></td></tr>\n</tbody>\n</table>\n<p><strong>Sora 종료 후 대안 전략:</strong></p>\n<img src=\"images/sora_alternative_strategy.png\" alt=\"Sora Alternative Strategy\" class=\"report-image\">"
+        },
+        {
+          "id": "music-industry",
+          "title": "3.2 음악 산업",
+          "content_html": "<p><strong>패러다임 전환: 불법 학습 → 라이선스 시대</strong></p>\n<table class=\"report-table\">\n<thead>\n<tr><th>사건</th><th>상태</th><th>의미</th></tr>\n</thead>\n<tbody>\n<tr><td>Warner ↔ Udio 합의</td><td>완료</td><td>아티스트 옵트인 라이선스, 2026년 구독 서비스</td></tr>\n<tr><td>Warner ↔ Suno 합의</td><td>완료</td><td>라이선스 기반 신규 모델 출시 예정</td></tr>\n<tr><td>UMG ↔ Udio 합의</td><td>완료</td><td>공동 서비스 개발</td></tr>\n<tr><td>Sony ↔ Suno/Udio</td><td>소송 계속</td><td>미합의</td></tr>\n</tbody>\n</table>\n<p><strong>시장 규모</strong>: 글로벌 AI 음악 시장 52억$(2024) → 604억$(2034), CAGR 27.8%</p>\n<p><strong>주요 플레이어:</strong></p>\n<ul>\n<li><strong>Suno</strong>: Series B $1.25억, 밸류에이션 $5억 (2024) <sup><a href=\"#fn12\">12</a></sup></li>\n<li><strong>ElevenLabs</strong>: Series D $5억, 밸류에이션 <strong>$110억</strong> (2026.02) <sup><a href=\"#fn8\">8</a></sup></li>\n<li><strong>HYBE Supertone</strong>: Supertone Play 출시(10초 음성 클로닝), 150개+ 음성 캐릭터 <sup><a href=\"#fn13\">13</a></sup></li>\n</ul>"
+        },
+        {
+          "id": "gaming-industry",
+          "title": "3.3 게임 산업",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>기술</th><th>현황</th><th>대표 사례</th></tr>\n</thead>\n<tbody>\n<tr><td>AI 업스케일링</td><td>DLSS 4.5 (6X Dynamic MFG), 250개+ 게임</td><td>RTX 50 시리즈 출시 완료</td></tr>\n<tr><td>AI NPC</td><td>상용 배포 시작</td><td>PUBG Ally, inZOI Smart Zoi</td></tr>\n<tr><td>PCG</td><td>Unreal 5.2+ 공식 지원</td><td>No Man's Sky, Diablo IV</td></tr>\n<tr><td>AI QA</td><td>테스트 시간 50~70% 단축</td><td>EA SEED, Ubisoft La Forge, modl.ai</td></tr>\n</tbody>\n</table>\n<p><strong>AI NPC 시장</strong>: Inworld AI $500M+ 밸류에이션, 200ms 이하 레이턴시 달성, Google·NVIDIA·Ubisoft·Xbox 고객사 <sup><a href=\"#fn11\">11</a></sup></p>"
+        },
+        {
+          "id": "broadcast-streaming",
+          "title": "3.4 방송/스트리밍",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>기술</th><th>현황</th><th>경제적 가치</th></tr>\n</thead>\n<tbody>\n<tr><td>AI 추천</td><td>Netflix 시청의 80%, YouTube 70%</td><td>Netflix 연간 ~10억$ 절감 <sup><a href=\"#fn14\">14</a></sup></td></tr>\n<tr><td>AI 더빙</td><td>YouTube Auto-Dubbing 베타, ElevenLabs 유니콘</td><td>번역 비용 60~70% 절감</td></tr>\n<tr><td>AI 앵커</td><td>MBN AI 김주하, 딥브레인AI 200개+ 아바타</td><td>24시간 뉴스 송출</td></tr>\n<tr><td>AI 하이라이트</td><td>WSC Sports (NBA, FIFA, ESPN)</td><td>자동 편집+배포</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "korea-market",
+          "title": "3.5 한국 시장 핵심 동향",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>기업</th><th>최신 AI 전략</th><th>규모</th></tr>\n</thead>\n<tbody>\n<tr><td><strong>HYBE</strong></td><td>\"엔터테크\" 전면 전환, Supertone Play(10초 클로닝), Syndi8 버추얼 팝그룹</td><td>Supertone 인수 450억원 <sup><a href=\"#fn13\">13</a></sup></td></tr>\n<tr><td><strong>SM엔터</strong></td><td>NEXT 3.0 전략, 30년 곡 데이터 AI A&amp;R, HYBE 지분 매각 후 독자 AI 가속</td><td>글로벌 신인 AI 활용</td></tr>\n<tr><td><strong>네이버웹툰</strong></td><td>Character Chat(335만 사용자), Disney 파트너십(2026.02), 크리에이터 27억$ 지급</td><td>MAU 1.7억+, 나스닥 상장 <sup><a href=\"#fn15\">15</a></sup></td></tr>\n<tr><td><strong>크래프톤</strong></td><td>PUBG Ally AI NPC, inZOI Smart Zoi</td><td>NVIDIA ACE 기반</td></tr>\n</tbody>\n</table>"
+        }
+      ]
+    },
+    {
+      "id": "opportunity-risk",
+      "title": "4. Opportunity & Risk Assessment",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "risk-matrix",
+          "title": "4.1 리스크 매트릭스",
+          "content_html": "<img src=\"images/risk_matrix.png\" alt=\"Risk Assessment Matrix\" class=\"report-image\">\n<table class=\"report-table\">\n<thead>\n<tr><th>리스크</th><th>수준</th><th>근거</th><th>대응</th></tr>\n</thead>\n<tbody>\n<tr><td>AI 벤더 종료/피벗</td><td>🔴 HIGH</td><td>Sora 전격 종료 실증. Disney 10억$ 무산</td><td>멀티벤더, 계약 종료 조항</td></tr>\n<tr><td>한국 AI 기본법</td><td>🔴 HIGH</td><td>2026.01 이미 시행. 라벨링 미준수 시 법적 리스크</td><td>TF 즉시 구성</td></tr>\n<tr><td>EU AI Act</td><td>🔴 HIGH</td><td>2026.08 전면 시행. 유럽 서비스 필수 대응</td><td>Q3까지 대응 체계</td></tr>\n<tr><td>M&amp;A 밸류에이션 과열</td><td>🔴 HIGH</td><td>AI 테마 딜 25%, EA 550억$, 소형 VC -69%</td><td>신중한 투자 판단</td></tr>\n<tr><td>AI 인재 확보</td><td>🔴 HIGH</td><td>엔터+AI 교차 역량 극소. Sora팀도 로보틱스 전환</td><td>인재 프로그램 설계</td></tr>\n<tr><td>AI 저작권 소송</td><td>🟡 MED</td><td>음악은 합의 중이나 영상/이미지 미해결</td><td>라이선스 기반 도구 우선</td></tr>\n<tr><td>소비자 AI 피로감</td><td>🟡 MED</td><td>AI 콘텐츠 범람 시 반발 가능</td><td>품질 관리, 라벨링</td></tr>\n<tr><td>컴퓨팅 비용</td><td>🟡 MED</td><td>Sora 종료 사유 = 비용 vs 수익 불균형</td><td>Buy 전략, 비용 모니터링</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "opportunity-areas",
+          "title": "4.2 기회 영역",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>기회</th><th>예상 ROI</th><th>시장 근거</th></tr>\n</thead>\n<tbody>\n<tr><td>AI 더빙/로컬라이제이션</td><td>비용 <strong>60~70% 절감</strong></td><td>ElevenLabs 110억$, 네이버웹툰 100개국 서비스</td></tr>\n<tr><td>AI VFX 파이프라인 통합</td><td>제작비 <strong>30~70% 절감</strong></td><td>Adobe/DaVinci 성숙 도구 즉시 가용</td></tr>\n<tr><td>AI 음악 라이선스 도입</td><td>신규 수익원</td><td>시장 52억$→604억$(2034)</td></tr>\n<tr><td>AI 기반 글로벌 콘텐츠 유통</td><td>유통 시장 확대</td><td>100개국+ 동시 서비스 가능</td></tr>\n<tr><td>AI 장편 콘텐츠</td><td>제작비 <strong>1/5~1/10</strong></td><td>Critterz 3천만$/9개월 모델</td></tr>\n</tbody>\n</table>"
+        }
+      ]
+    },
+    {
+      "id": "strategic-recommendations",
+      "title": "5. Strategic Recommendations",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "quick-win",
+          "title": "5.1 즉시 실행 — Quick Win (Q2 2026)",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>#</th><th>액션</th><th>기대 효과</th><th>예산(추정)</th></tr>\n</thead>\n<tbody>\n<tr><td>1</td><td><strong>AI 더빙/로컬라이제이션 파일럿</strong></td><td>글로벌 유통 비용 60~70% 절감</td><td>$50~100K</td></tr>\n<tr><td>2</td><td><strong>AI 기본법 대응 TF 구성</strong></td><td>법적 리스크 차단</td><td>내부 리소스</td></tr>\n<tr><td>3</td><td><strong>AI 영상 벤더 멀티소싱 전략</strong></td><td>Sora급 리스크 방지</td><td>$30~50K (평가 비용)</td></tr>\n<tr><td>4</td><td><strong>AI 콘텐츠 라벨링 시스템 구축</strong></td><td>한국+EU 동시 대응</td><td>$100~200K</td></tr>\n<tr><td>5</td><td><strong>VFX/후반작업 AI 도구 통합</strong></td><td>제작비 30~70% 절감</td><td>$50~150K (라이선스)</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "short-term",
+          "title": "5.2 단기 추진 (6~12개월)",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>#</th><th>액션</th><th>기대 효과</th></tr>\n</thead>\n<tbody>\n<tr><td>1</td><td>AI 음악 생성 라이선스 모델 도입</td><td>합법적 AI 음악 활용 체계</td></tr>\n<tr><td>2</td><td>AI NPC 파일럿 (게임사)</td><td>차세대 게임 경험 선점</td></tr>\n<tr><td>3</td><td>자사 데이터 기반 추천 고도화</td><td>개인화 깊이 → 시청시간 증가</td></tr>\n<tr><td>4</td><td>EU AI Act 대응 체계 구축</td><td>유럽 시장 사업 연속성</td></tr>\n<tr><td>5</td><td>AI 인재 확보 프로그램</td><td>기술 역량 내재화 기반</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "mid-term",
+          "title": "5.3 중기 투자 (1~2년)",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>#</th><th>액션</th><th>기대 효과</th></tr>\n</thead>\n<tbody>\n<tr><td>1</td><td>AI 에이전트 기반 프로덕션 자동화</td><td>파이프라인 효율화 (Gartner: 앱 40% 에이전트 통합)</td></tr>\n<tr><td>2</td><td>자사 IP 특화 AI 모델 구축</td><td>캐릭터/세계관 콘텐츠 자동 확장</td></tr>\n<tr><td>3</td><td>AI 장편 콘텐츠 제작 실험</td><td>제작비 1/5~1/10 역량</td></tr>\n<tr><td>4</td><td>인터랙티브/개인화 콘텐츠</td><td>차세대 소비 경험 선점</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "monitoring",
+          "title": "5.4 모니터링 대상",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>대상</th><th>트리거 이벤트</th></tr>\n</thead>\n<tbody>\n<tr><td>AI 영상 생성 시장 재편</td><td>특정 플랫폼 월간 생성량 50%+ 점유 시</td></tr>\n<tr><td>AI 저작권 프레임워크</td><td>NYT vs OpenAI 등 핵심 판결 시</td></tr>\n<tr><td>AI 에이전트 표준화</td><td>Unreal/Unity 에이전트 네이티브 지원 시</td></tr>\n<tr><td>소비자 AI 수용도</td><td>AI 라벨이 매출에 부정적 영향 시</td></tr>\n<tr><td>오픈소스 AI</td><td>상용 API 품질 동등 도달 시</td></tr>\n</tbody>\n</table>"
+        }
+      ]
+    },
+    {
+      "id": "investment-roadmap",
+      "title": "6. Investment Roadmap",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "investment-phases",
+          "title": "6.1 단계별 투자 프레임",
+          "content_html": "<pre class=\"mermaid\">gantt\n    title Investment Roadmap 2026-2027\n    dateFormat YYYY-MM\n    axisFormat %Y Q%q\n\n    section Quick Win\n    AI 더빙 파일럿           :active, qw1, 2026-04, 2026-06\n    AI 기본법 TF             :active, qw2, 2026-04, 2026-06\n    멀티소싱 전략             :active, qw3, 2026-04, 2026-07\n    라벨링 시스템 구축         :active, qw4, 2026-04, 2026-07\n    VFX AI 도구 통합          :active, qw5, 2026-04, 2026-07\n\n    section 단기 추진\n    AI 음악 라이선스 도입      :st1, 2026-07, 2026-12\n    AI NPC 파일럿             :st2, 2026-07, 2026-12\n    EU AI Act 대응            :st3, 2026-07, 2026-12\n    AI 인재 프로그램           :st4, 2026-08, 2027-01\n\n    section 중기 투자\n    AI 에이전트 자동화         :mt1, 2026-10, 2027-06\n    자사 IP 특화 AI 모델       :mt2, 2026-11, 2027-06\n    AI 장편 콘텐츠 실험        :mt3, 2027-01, 2027-06\n\n    section 성과 확인\n    성과 리뷰 &amp; 스케일업       :rv1, 2027-06, 2027-12</pre>"
+        },
+        {
+          "id": "kpi-framework",
+          "title": "6.2 KPI 프레임워크",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>단계</th><th>KPI</th><th>목표</th></tr>\n</thead>\n<tbody>\n<tr><td>Quick Win</td><td>더빙 비용 절감률</td><td>50%+</td></tr>\n<tr><td>Quick Win</td><td>기본법 감사 완료율</td><td>100%</td></tr>\n<tr><td>단기</td><td>AI 도구 도입 프로젝트 수</td><td>5개+</td></tr>\n<tr><td>단기</td><td>글로벌 서비스 언어 수</td><td>2배 확대</td></tr>\n<tr><td>중기</td><td>AI 활용 콘텐츠 비중</td><td>전체 제작의 30%+</td></tr>\n<tr><td>중기</td><td>AI 관련 매출 기여도</td><td>15%+</td></tr>\n</tbody>\n</table>"
+        }
+      ]
+    },
+    {
+      "id": "sora-lessons",
+      "title": "7. Sora 종료: 핵심 교훈",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "sora-timeline",
+          "title": "타임라인",
+          "content_html": "<pre class=\"mermaid\">timeline\n    title OpenAI Sora: Rise and Fall\n    section 성장기\n        2024.12 : Sora 1세대 출시\n                : ChatGPT Plus/Pro 공개\n        2025.09 : Sora 2 공개\n                : iOS/Android 앱 출시\n    section 정점\n        2025.12 : Disney 10억$ 파트너십 체결\n                : 200개+ 캐릭터 라이선싱\n    section 종료\n        2026.03.24 : ❌ 전격 서비스 종료\n                   : 비용 vs 수익 불균형\n                   : IPO 준비 비용 절감\n                   : ❌ Disney 투자 무산</pre>"
+        },
+        {
+          "id": "sora-lessons-learned",
+          "title": "세 가지 교훈",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>#</th><th>교훈</th><th>시사점</th></tr>\n</thead>\n<tbody>\n<tr><td>1</td><td><strong>기술 우수성 ≠ 사업 지속성</strong></td><td>벤더 선정 시 기술력+수익모델+재무건전성 종합 평가</td></tr>\n<tr><td>2</td><td><strong>빅테크 파트너십도 하루아침에 무산</strong></td><td>핵심 파이프라인의 단일 외부 의존 = 사업 연속성 리스크</td></tr>\n<tr><td>3</td><td><strong>AI 영상 시장은 아직 승자 없음</strong></td><td>멀티벤더 전략이 유일한 안전장치</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "sora-alternatives",
+          "title": "대안 벤더 비교",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>플랫폼</th><th>강점</th><th>약점</th><th>포지션</th></tr>\n</thead>\n<tbody>\n<tr><td><strong>Google Veo 3.1</strong></td><td>네이티브 오디오 동기화(유일), 립싱크 120ms</td><td>Google 생태계 종속</td><td>기술 리더</td></tr>\n<tr><td><strong>Runway Gen-4</strong></td><td>시네마틱 최고 품질, 디렉터급 제어</td><td>밸류 30억$(재무 리스크?)</td><td>크리에이터 1순위</td></tr>\n<tr><td><strong>Adobe Firefly</strong></td><td>Premiere Pro 통합, 기존 워크플로우 연계, 4K</td><td>독립 사용 한계</td><td>엔터프라이즈 표준 후보</td></tr>\n<tr><td><strong>Pika 2.5</strong></td><td>가격 경쟁력, Scene Ingredients</td><td>프로덕션급 한계</td><td>인디/크리에이터</td></tr>\n</tbody>\n</table>"
+        }
+      ]
+    },
+    {
+      "id": "korea-ai-law",
+      "title": "8. 한국 AI 기본법 대응",
+      "level": 2,
+      "content_html": "",
+      "subsections": [
+        {
+          "id": "ai-law-obligations",
+          "title": "8.1 핵심 의무",
+          "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>의무</th><th>해당 서비스</th><th>시급도</th></tr>\n</thead>\n<tbody>\n<tr><td>생성형 AI 라벨링</td><td>AI 음악, 영상, 이미지, 더빙</td><td><strong>즉시</strong> (시행 중)</td></tr>\n<tr><td>고영향 AI 분류 확인</td><td>추천 알고리즘(해석에 따라 상이)</td><td><strong>즉시</strong></td></tr>\n<tr><td>외국 AI 벤더 대리인</td><td>ElevenLabs, Runway 등 활용 시 확인</td><td>Q2</td></tr>\n<tr><td>AI 윤리위원회 권고</td><td>딥페이크, 보이스 클로닝</td><td>연내</td></tr>\n</tbody>\n</table>"
+        },
+        {
+          "id": "compliance-checklist",
+          "title": "8.2 컴플라이언스 체크리스트",
+          "content_html": "<p><strong>Phase 1 — 즉시 (Q1~Q2 2026):</strong></p>\n<ul>\n<li><input type=\"checkbox\" disabled> 자사 AI 활용 현황 전수 조사</li>\n<li><input type=\"checkbox\" disabled> \"고영향 AI\" 해당 여부 법률 검토</li>\n<li><input type=\"checkbox\" disabled> AI 생성 콘텐츠 라벨링 시스템 구현</li>\n<li><input type=\"checkbox\" disabled> 외부 AI 벤더 한국 대리인 확인</li>\n<li><input type=\"checkbox\" disabled> AI 기본법 대응 TF 구성 (CTO 직속)</li>\n</ul>\n<p><strong>Phase 2 — 안정화 (Q3~Q4 2026):</strong></p>\n<ul>\n<li><input type=\"checkbox\" disabled> AI 거버넌스 프레임워크 수립</li>\n<li><input type=\"checkbox\" disabled> AI 윤리 리뷰 프로세스 도입</li>\n<li><input type=\"checkbox\" disabled> 비가청 워터마크 등 기술적 라벨링 수단</li>\n<li><input type=\"checkbox\" disabled> 직원 AI 리터러시 교육</li>\n</ul>\n<p><strong>Phase 3 — 선도적 활용 (2027~):</strong></p>\n<ul>\n<li><input type=\"checkbox\" disabled> AI 규제 샌드박스 참여</li>\n<li><input type=\"checkbox\" disabled> 정부 AI 콘텐츠 지원 사업 활용 (문체부 연간 수백억 원)</li>\n<li><input type=\"checkbox\" disabled> K-콘텐츠 AI 융합 전략 연계</li>\n</ul>\n<blockquote><p>💡 한국 기본법 준수 체계 = EU AI Act(2026.08) 대응의 기반이 됩니다</p></blockquote>"
+        }
+      ]
+    },
+    {
+      "id": "company-investments",
+      "title": "9. 주요 기업 AI 투자 현황 (팩트체크 완료)",
+      "level": 2,
+      "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>기업</th><th>라운드/거래</th><th>금액</th><th>밸류에이션</th><th>출처</th></tr>\n</thead>\n<tbody>\n<tr><td><strong>ElevenLabs</strong></td><td>Series D (2026.02)</td><td>$5억</td><td><strong>$110억</strong></td><td>CNBC <sup><a href=\"#fn8\">8</a></sup></td></tr>\n<tr><td><strong>Runway</strong></td><td>Series D (2025.04)</td><td>$3.08억</td><td><strong>$30억</strong></td><td>Variety <sup><a href=\"#fn16\">16</a></sup></td></tr>\n<tr><td><strong>Synthesia</strong></td><td>Series E (2026.01)</td><td>$2억</td><td><strong>$40억</strong></td><td>TechCrunch <sup><a href=\"#fn17\">17</a></sup></td></tr>\n<tr><td><strong>Suno</strong></td><td>Series B (2024.05)</td><td>$1.25억</td><td>$5억</td><td>Billboard <sup><a href=\"#fn12\">12</a></sup></td></tr>\n<tr><td><strong>Pika Labs</strong></td><td>누적</td><td>$1.35억</td><td>-</td><td>Pika Blog <sup><a href=\"#fn18\">18</a></sup></td></tr>\n<tr><td><strong>Inworld AI</strong></td><td>Series A+</td><td>$5,000만</td><td>$500M+</td><td>VentureBeat <sup><a href=\"#fn19\">19</a></sup></td></tr>\n<tr><td><strong>HYBE→Supertone</strong></td><td>인수 (2022)</td><td>450억원</td><td>-</td><td>MBW <sup><a href=\"#fn13\">13</a></sup></td></tr>\n<tr><td><strong>EA</strong></td><td>사모펀드 인수 (2026)</td><td><strong>$550억</strong></td><td>-</td><td>보도 <sup><a href=\"#fn5\">5</a></sup></td></tr>\n</tbody>\n</table>",
+      "subsections": []
+    },
+    {
+      "id": "references",
+      "title": "참고문헌",
+      "level": 2,
+      "content_html": "<h3>Tier 1 — 1차 출처</h3>\n<ol>\n<li id=\"fn1\">Grand View Research, \"AI in Media &amp; Entertainment Market Report, 2030\" — 2024년 $259.8B, CAGR 24.2%</li>\n<li id=\"fn2\">MarketsandMarkets, \"AI in Media Market\" — 2024년 $82.1B, CAGR 35.6%</li>\n<li id=\"fn3\">PwC, \"Sizing the Prize: AI's $15.7 Trillion Opportunity\" (2017) — World Economic Forum 인용</li>\n<li id=\"fn4\">McKinsey, \"Beyond the Hype: Capturing the Potential of AI and Gen AI in TMT\" (2024)</li>\n<li id=\"fn5\">AlixPartners, \"2026 Media &amp; Entertainment M&amp;A Predictions\" — GlobeNewsWire (2025.11)</li>\n<li id=\"fn6\">CNN, \"OpenAI shutting down Sora video app\" (2026.03.24) — Variety 교차 확인</li>\n<li id=\"fn7\">Musically, \"UMG settles Udio lawsuit, plan new AI music service\" (2025.10); McKool Smith 소송 업데이트</li>\n<li id=\"fn8\">CNBC, \"NVIDIA-backed AI startup ElevenLabs hits $11 billion valuation\" (2026.02.04); ElevenLabs 공식 블로그</li>\n<li id=\"fn9\">CSET Georgetown, \"South Korea AI Law 2025\" — 2025.01.21 국회 통과, 2026.01.22 시행</li>\n<li id=\"fn10\">PetaPixel, \"OpenAI Critterz AI Movie\" (2025.09); Yahoo Finance, \"Post Truth first AI film\"</li>\n<li id=\"fn11\">Inworld AI GDC 2025 Blog; NewscastStudio, \"Agentic AI in Broadcast\" (2025.12)</li>\n</ol>\n<h3>Tier 2 — 2차 출처</h3>\n<ol start=\"12\">\n<li id=\"fn12\">Billboard, \"AI Music Company Suno Raises $125M\" (2024.05)</li>\n<li id=\"fn13\">Music Business Worldwide, \"HYBE acquires Supertone\" / \"Supertone Play TTS tool\"</li>\n<li id=\"fn14\">Marketingino, \"Netflix Recommendation Algorithm\" — 시청 80%, 연간 $10억 절감</li>\n<li id=\"fn15\">Nasdaq, \"Naver-backed Webtoon raises $315M in IPO\" (2024.06); Seoul Economic Daily 네이버웹툰-Disney 파트너십</li>\n<li id=\"fn16\">Variety, \"AI Runway Raises $308M, Valuation $3B\" (2025.04)</li>\n<li id=\"fn17\">TechCrunch, \"Synthesia hits $4B valuation\" (2026.01)</li>\n<li id=\"fn18\">Pika Art Blog, 투자 공식 발표</li>\n<li id=\"fn19\">VentureBeat, \"Inworld AI raises new round at $500M valuation\"</li>\n</ol>\n<h3>Tier 3 — 참고 출처</h3>\n<ul>\n<li>RIAA, \"Record Companies Bring Landmark Cases Against Suno and Udio\" (2024.06)</li>\n<li>IFPI Global Music Report 2024</li>\n<li>GDC 2024 State of the Game Industry Survey — Game Developer</li>\n<li>EU AI Act Implementation Timeline — artificialintelligenceact.eu</li>\n<li>NVIDIA GeForce News — RTX 5090/5080, DLSS 4/4.5</li>\n<li>Adobe Blog — Firefly Video Updates, Premiere Pro 2026</li>\n<li>Google DeepMind — Veo 3/3.1</li>\n</ul>",
+      "subsections": []
+    },
+    {
+      "id": "appendix-a",
+      "title": "부록 A: 경영진 원페이저",
+      "level": 2,
+      "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>핵심 지표</th><th>수치</th><th>출처</th></tr>\n</thead>\n<tbody>\n<tr><td>글로벌 엔터 AI 시장 (2024)</td><td>259.8억$</td><td>GVR</td></tr>\n<tr><td>글로벌 엔터 AI 시장 (2030)</td><td>994.8억$ (CAGR 24.2%)</td><td>GVR</td></tr>\n<tr><td>AI 음악 시장 (2024→2034)</td><td>52억$ → 604억$</td><td>업계 추정</td></tr>\n<tr><td>AI 에이전트 시장 (2025→2030)</td><td>78.4억$ → 526.2억$</td><td>Gartner</td></tr>\n<tr><td>AI VFX 비용 절감</td><td>30~70%</td><td>업계 실증</td></tr>\n<tr><td>AI 번역 비용 절감</td><td>60~70%</td><td>네이버웹툰</td></tr>\n<tr><td>한국 AI 기본법 시행일</td><td>2026.01.22</td><td>법률 확정</td></tr>\n<tr><td>EU AI Act 전면 시행일</td><td>2026.08</td><td>EU 확정</td></tr>\n<tr><td>2026 엔터 M&amp;A 전망</td><td>800억$+</td><td>AlixPartners</td></tr>\n</tbody>\n</table>",
+      "subsections": []
+    },
+    {
+      "id": "appendix-b",
+      "title": "부록 B: 용어 정의",
+      "level": 2,
+      "content_html": "<table class=\"report-table\">\n<thead>\n<tr><th>용어</th><th>정의</th></tr>\n</thead>\n<tbody>\n<tr><td><strong>CAGR</strong></td><td>연평균 복합 성장률 (Compound Annual Growth Rate)</td></tr>\n<tr><td><strong>DLSS</strong></td><td>Deep Learning Super Sampling — NVIDIA의 AI 업스케일링 기술</td></tr>\n<tr><td><strong>NPC</strong></td><td>Non-Player Character — 게임 내 AI 제어 캐릭터</td></tr>\n<tr><td><strong>PCG</strong></td><td>Procedural Content Generation — 절차적 콘텐츠 생성</td></tr>\n<tr><td><strong>TTS</strong></td><td>Text-to-Speech — 텍스트 음성 변환</td></tr>\n<tr><td><strong>VFX</strong></td><td>Visual Effects — 시각 효과</td></tr>\n<tr><td><strong>GVR</strong></td><td>Grand View Research (시장조사 기관)</td></tr>\n<tr><td><strong>MnM</strong></td><td>MarketsandMarkets (시장조사 기관)</td></tr>\n</tbody>\n</table>",
+      "subsections": []
+    }
+  ],
+  "metadata": {
+    "report_title": "엔터테인먼트 산업 AI 활용 현황 및 전략 보고서",
+    "target": "CTO / C-Level 경영진",
+    "date": "2026년 3월 25일",
+    "classification": "전략 보고서 (Confidential)",
+    "version": "2.0 (팩트체크·트렌드 업데이트·인사이트 분석 반영)",
+    "disclaimer": "본 보고서는 2026년 3월 25일 기준 공개 데이터에 기반합니다. 시장 규모 수치는 조사 기관별 방법론 차이로 편차가 있으며(GVR 259.8억$ vs MnM 82.1억$), 의사결정 시 범위값으로 참고하시기 바랍니다. 모든 수치는 팩트체크를 거쳤으나, 최종 의사결정 전 1차 출처 직접 확인을 권장합니다."
+  }
+}

@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>엔터테인먼트 산업 AI 활용 현황 및 전략 보고서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* ============================================
+   CSS VARIABLES & RESET
+   ============================================ */
+:root {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-card: #1e293b;
+  --bg-card-hover: #263548;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-blue: #3b82f6;
+  --accent-blue-light: #60a5fa;
+  --accent-emerald: #10b981;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-purple: #8b5cf6;
+  --border-default: #334155;
+  --border-hover: #475569;
+  --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --gradient-card: linear-gradient(145deg, #1e293b, #263548);
+  --sidebar-width: 280px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--bg-tertiary); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+h2 { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.01em; line-height: 1.3; margin-bottom: 1.5rem; }
+h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.4; margin-bottom: 1rem; }
+h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
+p { margin-bottom: 1rem; color: var(--text-secondary); }
+strong { color: var(--text-primary); font-weight: 600; }
+a { color: var(--accent-blue-light); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--accent-blue); text-decoration: underline; }
+code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-default);
+  overflow-y: auto;
+  z-index: 100;
+  padding: 1.5rem 0;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 0 1.5rem 1rem;
+  border-bottom: 1px solid var(--border-default);
+  margin-bottom: 1rem;
+}
+.sidebar-header h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+.toc { list-style: none; }
+.toc > li { margin-bottom: 0.25rem; }
+.toc-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  border-left: 2px solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.toc-link:hover { color: var(--text-primary); background: rgba(59,130,246,0.05); text-decoration: none; }
+.toc-link.active {
+  color: var(--accent-blue);
+  border-left-color: var(--accent-blue);
+  background: rgba(59,130,246,0.08);
+  font-weight: 500;
+}
+.toc-link .toc-icon { font-size: 1rem; width: 1.25rem; text-align: center; flex-shrink: 0; }
+.toc-sub { list-style: none; }
+.toc-sub .toc-link { padding-left: 3rem; font-size: 0.8rem; }
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border-default);
+}
+.section:last-child { border-bottom: none; }
+
+/* ============================================
+   HAMBURGER MENU (MOBILE)
+   ============================================ */
+.hamburger {
+  display: none;
+  position: fixed;
+  top: 1rem; left: 1rem;
+  z-index: 200;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 0.5rem;
+  padding: 0.6rem;
+  cursor: pointer;
+  color: var(--text-primary);
+}
+.hamburger svg { display: block; }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 90;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  background: var(--gradient-hero);
+  padding: 6rem 0 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(139,92,246,0.06) 0%, transparent 50%);
+  animation: heroPulse 8s ease-in-out infinite alternate;
+}
+@keyframes heroPulse {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.05) rotate(2deg); }
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  background: rgba(59,130,246,0.15);
+  border: 1px solid rgba(59,130,246,0.3);
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  color: var(--accent-blue-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+}
+.hero h1 { margin-bottom: 1rem; }
+.hero-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+.hero-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.highlight-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.highlight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+.highlight-card .card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem; height: 2rem;
+  background: var(--accent-blue);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+.highlight-card .card-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-blue-light);
+  margin-bottom: 0.5rem;
+}
+.highlight-card .card-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   DATA CARDS
+   ============================================ */
+.data-card {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.data-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-default);
+  margin-bottom: 1.5rem;
+}
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.report-table th {
+  background: var(--bg-tertiary);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border-default);
+}
+.report-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  vertical-align: top;
+}
+.report-table tr:last-child td { border-bottom: none; }
+.report-table tr:hover td { background: var(--bg-card-hover); }
+.report-table td strong { color: var(--text-primary); }
+
+/* ============================================
+   IMAGES
+   ============================================ */
+.report-image {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-default);
+  margin: 1.5rem 0;
+  display: block;
+}
+
+/* ============================================
+   CALLOUT / BLOCKQUOTE
+   ============================================ */
+.callout {
+  background: rgba(59,130,246,0.08);
+  border-left: 3px solid var(--accent-blue);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.callout.warning {
+  background: rgba(245,158,11,0.08);
+  border-left-color: var(--accent-amber);
+}
+.callout.success {
+  background: rgba(16,185,129,0.08);
+  border-left-color: var(--accent-emerald);
+}
+.callout strong { color: var(--text-primary); }
+
+/* ============================================
+   RISK BADGES
+   ============================================ */
+.risk-high, .risk-red {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(239,68,68,0.15);
+  color: var(--accent-red);
+}
+.risk-medium, .risk-yellow {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(245,158,11,0.15);
+  color: var(--accent-amber);
+}
+.risk-low, .risk-green {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(16,185,129,0.15);
+  color: var(--accent-emerald);
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--border-default);
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+}
+.tab-btn {
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.tab-btn:hover { color: var(--text-primary); }
+.tab-btn.active {
+  color: var(--accent-blue);
+  border-bottom-color: var(--accent-blue);
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ============================================
+   ACCORDION
+   ============================================ */
+.accordion-item {
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+.accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: var(--bg-secondary);
+  border: none;
+  width: 100%;
+  text-align: left;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+.accordion-header:hover { background: var(--bg-card-hover); }
+.accordion-header .arrow {
+  transition: transform 0.3s ease;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+.accordion-item.open .accordion-header .arrow { transform: rotate(180deg); }
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion-body-inner {
+  padding: 1.25rem;
+}
+
+/* ============================================
+   CHECKLIST
+   ============================================ */
+.checklist { list-style: none; margin-bottom: 1.5rem; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.checklist li::before {
+  content: '';
+  width: 1.2rem; height: 1.2rem;
+  border: 2px solid var(--border-hover);
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+/* ============================================
+   DECISION BOX
+   ============================================ */
+.decision-box {
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.2);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+.decision-box h3 {
+  color: var(--accent-red);
+  margin-bottom: 1rem;
+}
+.decision-box ul {
+  list-style: none;
+  padding: 0;
+}
+.decision-box li {
+  padding: 0.4rem 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+.decision-box li::before {
+  content: '→ ';
+  color: var(--accent-red);
+  font-weight: 700;
+}
+
+/* ============================================
+   SECTION HEADER
+   ============================================ */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.section-header .section-icon {
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59,130,246,0.1);
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   FOOTNOTE
+   ============================================ */
+sup.fn-ref a {
+  color: var(--accent-blue-light);
+  font-size: 0.75rem;
+  text-decoration: none;
+  padding: 0 0.15rem;
+}
+sup.fn-ref a:hover { text-decoration: underline; }
+.footnotes { margin-top: 1rem; }
+.footnotes ol {
+  padding-left: 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+.footnotes li { margin-bottom: 0.4rem; }
+.footnotes li a.fn-back { color: var(--accent-blue); text-decoration: none; margin-left: 0.25rem; }
+
+/* ============================================
+   SCROLL TO TOP
+   ============================================ */
+.scroll-top {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  width: 3rem; height: 3rem;
+  background: var(--accent-blue);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 200;
+  box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+}
+.scroll-top.visible { opacity: 1; visibility: visible; }
+.scroll-top:hover { transform: translateY(-2px); }
+.scroll-top svg { width: 20px; height: 20px; }
+
+/* ============================================
+   FADE-IN ANIMATION
+   ============================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   MERMAID
+   ============================================ */
+.mermaid-wrapper {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  padding: 3rem 0;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border-top: 1px solid var(--border-default);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1200px) {
+  .sidebar { width: 260px; }
+  .main-content { margin-left: 260px; }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .sidebar-overlay.open { display: block; }
+  .hamburger { display: block; }
+  .main-content { margin-left: 0; }
+  .content-wrapper { padding: 0 1.25rem; }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.5rem; }
+  .hero { padding: 5rem 1rem 3rem; }
+  .hero-highlights { grid-template-columns: 1fr; gap: 1rem; padding: 0 1rem; }
+  .section { padding: 2.5rem 0; }
+  .tabs { gap: 0; }
+  .tab-btn { padding: 0.6rem 0.8rem; font-size: 0.8rem; }
+  .scroll-top { bottom: 1.5rem; right: 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .content-wrapper { padding: 0 1rem; }
+  .report-table { font-size: 0.8rem; }
+  .report-table th, .report-table td { padding: 0.5rem 0.6rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     HAMBURGER BUTTON
+     ============================================ -->
+<button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<!-- ============================================
+     SIDEBAR
+     ============================================ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <h2>목차</h2>
+  </div>
+  <ul class="toc">
+    <li><a href="#executive-summary" class="toc-link" data-section="executive-summary"><span class="toc-icon">📋</span> Executive Summary</a></li>
+    <li>
+      <a href="#strategic-context" class="toc-link" data-section="strategic-context"><span class="toc-icon">📊</span> 시장 환경</a>
+      <ul class="toc-sub">
+        <li><a href="#global-market" class="toc-link" data-section="global-market">글로벌 시장 규모</a></li>
+        <li><a href="#regional-market" class="toc-link" data-section="regional-market">지역별 시장</a></li>
+        <li><a href="#market-signals" class="toc-link" data-section="market-signals">전환 시그널</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#technology-landscape" class="toc-link" data-section="technology-landscape"><span class="toc-icon">🔬</span> 기술 성숙도 매트릭스</a>
+      <ul class="toc-sub">
+        <li><a href="#tech-maturity" class="toc-link" data-section="tech-maturity">기술별 성숙도</a></li>
+        <li><a href="#build-vs-buy" class="toc-link" data-section="build-vs-buy">Build vs Buy</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#sector-trends" class="toc-link" data-section="sector-trends"><span class="toc-icon">🎬</span> 분야별 핵심 동향</a>
+      <ul class="toc-sub">
+        <li><a href="#film-production" class="toc-link" data-section="film-production">영화/영상</a></li>
+        <li><a href="#music-industry" class="toc-link" data-section="music-industry">음악</a></li>
+        <li><a href="#gaming-industry" class="toc-link" data-section="gaming-industry">게임</a></li>
+        <li><a href="#broadcast-streaming" class="toc-link" data-section="broadcast-streaming">방송/스트리밍</a></li>
+        <li><a href="#korea-market" class="toc-link" data-section="korea-market">한국 시장</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#opportunity-risk" class="toc-link" data-section="opportunity-risk"><span class="toc-icon">⚖️</span> 리스크 &amp; 기회</a>
+      <ul class="toc-sub">
+        <li><a href="#risk-matrix" class="toc-link" data-section="risk-matrix">리스크 매트릭스</a></li>
+        <li><a href="#opportunity-areas" class="toc-link" data-section="opportunity-areas">기회 영역</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#strategic-recommendations" class="toc-link" data-section="strategic-recommendations"><span class="toc-icon">🎯</span> 전략 권고</a>
+      <ul class="toc-sub">
+        <li><a href="#quick-win" class="toc-link" data-section="quick-win">Quick Win</a></li>
+        <li><a href="#short-term" class="toc-link" data-section="short-term">단기 추진</a></li>
+        <li><a href="#mid-term" class="toc-link" data-section="mid-term">중기 투자</a></li>
+        <li><a href="#monitoring" class="toc-link" data-section="monitoring">모니터링</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#investment-roadmap" class="toc-link" data-section="investment-roadmap"><span class="toc-icon">💰</span> 투자 로드맵</a>
+      <ul class="toc-sub">
+        <li><a href="#investment-phases" class="toc-link" data-section="investment-phases">투자 프레임</a></li>
+        <li><a href="#kpi-framework" class="toc-link" data-section="kpi-framework">KPI</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#sora-lessons" class="toc-link" data-section="sora-lessons"><span class="toc-icon">⚠️</span> Sora 교훈</a>
+      <ul class="toc-sub">
+        <li><a href="#sora-timeline" class="toc-link" data-section="sora-timeline">타임라인</a></li>
+        <li><a href="#sora-lessons-learned" class="toc-link" data-section="sora-lessons-learned">교훈</a></li>
+        <li><a href="#sora-alternatives" class="toc-link" data-section="sora-alternatives">벤더 비교</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#korea-ai-law" class="toc-link" data-section="korea-ai-law"><span class="toc-icon">📜</span> AI 기본법 대응</a>
+      <ul class="toc-sub">
+        <li><a href="#ai-law-obligations" class="toc-link" data-section="ai-law-obligations">핵심 의무</a></li>
+        <li><a href="#compliance-checklist" class="toc-link" data-section="compliance-checklist">체크리스트</a></li>
+      </ul>
+    </li>
+    <li><a href="#company-investments" class="toc-link" data-section="company-investments"><span class="toc-icon">🏢</span> 기업 투자 현황</a></li>
+    <li><a href="#references" class="toc-link" data-section="references"><span class="toc-icon">📚</span> 참고문헌</a></li>
+    <li><a href="#appendix-a" class="toc-link" data-section="appendix-a"><span class="toc-icon">📄</span> 부록 A: 원페이저</a></li>
+    <li><a href="#appendix-b" class="toc-link" data-section="appendix-b"><span class="toc-icon">📖</span> 부록 B: 용어 정의</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================
+     MAIN CONTENT
+     ============================================ -->
+<div class="main-content">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content content-wrapper">
+      <div class="hero-badge">Confidential · CTO Report · Version 2.0</div>
+      <h1>엔터테인먼트 산업 AI 활용 현황<br>및 전략 보고서</h1>
+      <p class="hero-subtitle">보고 대상: CTO / C-Level 경영진 · 2026년 3월 25일</p>
+      <div class="hero-highlights">
+        <div class="highlight-card">
+          <div class="card-number">1</div>
+          <div class="card-label">시장</div>
+          <div class="card-text">글로벌 엔터테인먼트 AI 시장은 2024년 <strong>82~260억 달러</strong> 규모이며, 2030년 <strong>995억 달러</strong>(CAGR 24.2%)로 성장 전망</div>
+        </div>
+        <div class="highlight-card">
+          <div class="card-number">2</div>
+          <div class="card-label">전환점</div>
+          <div class="card-text">OpenAI Sora 전격 종료(2026.03)와 AI 음악 라이선스 합의가 시장 구조를 재편 중 — <strong>단일 벤더 의존은 사업 연속성 리스크</strong></div>
+        </div>
+        <div class="highlight-card">
+          <div class="card-number">3</div>
+          <div class="card-label">즉시 과제</div>
+          <div class="card-text">한국 AI 기본법(2026.01 시행)과 EU AI Act(2026.08 시행)에 대한 <strong>컴플라이언스 대응이 긴급</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <section class="section fade-in" id="executive-summary">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">📋</div>
+        <h2>Executive Summary</h2>
+      </div>
+
+      <h3>핵심 메시지 3가지</h3>
+      <ol style="color:var(--text-secondary); padding-left:1.25rem; margin-bottom:1.5rem;">
+        <li style="margin-bottom:0.75rem;"><strong>시장</strong>: 글로벌 엔터테인먼트 AI 시장은 2024년 <strong>82~260억 달러</strong> 규모이며, 2030년 <strong>995억 달러</strong>(CAGR 24.2%)로 성장 전망 <sup class="fn-ref"><a href="#fn1" id="fnref1">[1]</a></sup><sup class="fn-ref"><a href="#fn2" id="fnref2">[2]</a></sup></li>
+        <li style="margin-bottom:0.75rem;"><strong>전환점</strong>: OpenAI Sora 전격 종료(2026.03)와 AI 음악 라이선스 합의가 시장 구조를 재편 중 — <strong>단일 벤더 의존은 사업 연속성 리스크</strong></li>
+        <li><strong>즉시 과제</strong>: 한국 AI 기본법(2026.01 시행)과 EU AI Act(2026.08 시행)에 대한 <strong>컴플라이언스 대응이 긴급</strong></li>
+      </ol>
+
+      <div class="decision-box">
+        <h3>필요 의사결정</h3>
+        <ul>
+          <li>AI 더빙/로컬라이제이션 파일럿 착수 승인 (Q2)</li>
+          <li>AI 기본법 대응 TF 구성 (즉시)</li>
+          <li>AI 벤더 멀티소싱 전략 승인</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1. STRATEGIC CONTEXT -->
+  <section class="section fade-in" id="strategic-context">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">📊</div>
+        <h2>1. Strategic Context: 시장 환경</h2>
+      </div>
+
+      <!-- 1.1 글로벌 시장 -->
+      <div id="global-market" class="fade-in">
+        <h3>1.1 글로벌 시장 규모</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>출처</th><th>2024년</th><th>2030년 전망</th><th>CAGR</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Grand View Research</strong></td><td>259.8억$</td><td>994.8억$</td><td>24.2%</td></tr>
+              <tr><td><strong>MarketsandMarkets</strong></td><td>82.1억$</td><td>510.8억$</td><td>35.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout warning">
+          ⚠️ 두 기관의 시장 범위 정의가 상이합니다. GVR은 미디어&amp;엔터 전반의 AI 적용을, MnM은 좁은 정의의 엔터테인먼트 AI를 산정합니다. 의사결정 시 <strong>GVR 기준을 권장</strong>합니다. <sup class="fn-ref"><a href="#fn1">[1]</a></sup><sup class="fn-ref"><a href="#fn2">[2]</a></sup>
+        </div>
+        <h4>보조 전망 데이터</h4>
+        <ul style="color:var(--text-secondary); padding-left:1.25rem; margin-bottom:1.5rem;">
+          <li><strong>PwC</strong>: AI가 2030년까지 글로벌 GDP에 15.7조 달러 기여, 엔터테인먼트가 주요 수혜 산업 <sup class="fn-ref"><a href="#fn3" id="fnref3">[3]</a></sup></li>
+          <li><strong>McKinsey</strong>: 생성형 AI가 미디어/엔터 산업에서 연간 <strong>800억~1,300억 달러</strong> 생산성 향상 가능 <sup class="fn-ref"><a href="#fn4" id="fnref4">[4]</a></sup></li>
+          <li><strong>AlixPartners</strong>: 2026년 미디어&amp;엔터 M&amp;A 규모 <strong>800억 달러 이상</strong> 전망, AI 역량이 딜의 25% 차지 <sup class="fn-ref"><a href="#fn5" id="fnref5">[5]</a></sup></li>
+        </ul>
+      </div>
+
+      <!-- 1.2 지역별 시장 -->
+      <div id="regional-market" class="fade-in">
+        <h3>1.2 지역별 시장</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>지역</th><th>점유율</th><th>CAGR</th><th>핵심 동인</th></tr></thead>
+            <tbody>
+              <tr><td><strong>북미</strong></td><td>~40%</td><td>~24%</td><td>할리우드 스튜디오, Big Tech(Netflix, Google, Meta)</td></tr>
+              <tr><td><strong>아시아태평양</strong></td><td>~30%</td><td>~30%+</td><td>K-콘텐츠, 중국 ByteDance/Tencent, 일본 애니메이션</td></tr>
+              <tr><td><strong>유럽</strong></td><td>~20%</td><td>~22%</td><td>EU AI Act 규제 선도, BBC/ITV AI 도입</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 1.3 전환 시그널 -->
+      <div id="market-signals" class="fade-in">
+        <h3>1.3 2026 Q1 시장 전환 시그널</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>시그널</th><th>영향도</th><th>상세</th></tr></thead>
+            <tbody>
+              <tr><td>🔴 <strong>Sora 서비스 종료</strong> (2026.03.24)</td><td><span class="risk-high">극대</span></td><td>Disney 10억$ 투자 무산, 텍스트-to-비디오 시장 재편 <sup class="fn-ref"><a href="#fn6" id="fnref6">[6]</a></sup></td></tr>
+              <tr><td>🔴 <strong>AI 음악 라이선스 합의</strong></td><td><span class="risk-high">극대</span></td><td>Warner-Suno/Udio 합의, "무단 학습→라이선스" 전환 <sup class="fn-ref"><a href="#fn7" id="fnref7">[7]</a></sup></td></tr>
+              <tr><td>🔴 <strong>ElevenLabs 110억$ 밸류에이션</strong></td><td><span class="risk-high">대</span></td><td>음성 AI 단일 기업 엔터 AI 최대 규모, Series D $5억 <sup class="fn-ref"><a href="#fn8" id="fnref8">[8]</a></sup></td></tr>
+              <tr><td>🔴 <strong>한국 AI 기본법 시행</strong> (2026.01)</td><td><span class="risk-high">대</span></td><td>아태 최초 포괄 AI 입법, 라벨링 의무 <sup class="fn-ref"><a href="#fn9" id="fnref9">[9]</a></sup></td></tr>
+              <tr><td>🟡 <strong>AI 장편 영화 극장 개봉</strong></td><td><span class="risk-medium">중</span></td><td>Post Truth 개봉, Critterz 칸 프리미어 <sup class="fn-ref"><a href="#fn10" id="fnref10">[10]</a></sup></td></tr>
+              <tr><td>🟡 <strong>AI NPC 상용 배포</strong></td><td><span class="risk-medium">중</span></td><td>PUBG Ally, inZOI Smart Zoi 실서비스 <sup class="fn-ref"><a href="#fn11" id="fnref11">[11]</a></sup></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TECHNOLOGY LANDSCAPE -->
+  <section class="section fade-in" id="technology-landscape">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">🔬</div>
+        <h2>2. Technology Landscape: 기술 성숙도 매트릭스</h2>
+      </div>
+
+      <!-- 2.1 기술별 성숙도 -->
+      <div id="tech-maturity" class="fade-in">
+        <h3>2.1 기술별 성숙도 평가</h3>
+        <img src="images/tech_maturity_matrix.png" alt="기술 성숙도 매트릭스" class="report-image" loading="lazy">
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>기술</th><th>단계</th><th>전략적 의미</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AI 추천 엔진</strong></td><td>성숙</td><td>테이블 스테이크. 차별화는 "더 깊은 개인화"에서 발생</td></tr>
+              <tr><td><strong>AI 업스케일링</strong></td><td>성숙</td><td>DLSS 4.5 250개+ 게임 지원. 자체 개발 불필요</td></tr>
+              <tr><td><strong>AI 더빙/로컬라이제이션</strong></td><td>주류 채택</td><td>⭐ <strong>지금 가장 빠르게 성장하는 영역</strong>. 6개월 내 파일럿 필수</td></tr>
+              <tr><td><strong>AI 음악 생성</strong></td><td>초기→주류 전환</td><td>라이선스 합의로 기업 도입 장벽 급락. 시장 52억$→604억$(2034)</td></tr>
+              <tr><td><strong>AI NPC</strong></td><td>초기 상용화</td><td>200ms 레이턴시 달성. 게임사 파일럿 시작 시점</td></tr>
+              <tr><td><strong>AI 영상 생성</strong></td><td>초기 상용화 (불안정)</td><td>Sora 종료로 시장 1위 부재. 멀티벤더 전략 필수</td></tr>
+              <tr><td><strong>AI 장편 영화</strong></td><td>실험→초기</td><td>제작비 1/5~1/10. 중소 스튜디오에 파괴적 기회</td></tr>
+              <tr><td><strong>AI 에이전트</strong></td><td>실험</td><td>2026년 원년. Gartner: 연말 기업 앱 40% 통합 전망</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2.2 Build vs Buy -->
+      <div id="build-vs-buy" class="fade-in">
+        <h3>2.2 Build vs Buy 판단 가이드</h3>
+        <img src="images/build_vs_buy.png" alt="Build vs Buy 판단 프레임워크" class="report-image" loading="lazy">
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>판단</th><th>기술</th><th>핵심 이유</th></tr></thead>
+            <tbody>
+              <tr><td><span class="risk-high">Buy</span></td><td>업스케일링, 음성/더빙, 영상 생성, QA</td><td>자체 개발 ROI 없음. Sora조차 비용 감당 못함</td></tr>
+              <tr><td><span class="risk-green">Build</span></td><td>추천 엔진, IP/캐릭터 관리, 콘텐츠 분석</td><td>자사 데이터가 핵심 자산. 외부 위탁 시 경쟁력 유출</td></tr>
+              <tr><td><span style="display:inline-block;padding:0.15rem 0.6rem;border-radius:0.25rem;font-size:0.75rem;font-weight:600;background:rgba(139,92,246,0.15);color:var(--accent-purple);">Hybrid</span></td><td>NPC AI, 음악 생성, AI 에이전트</td><td>API로 파일럿 → 자사 데이터로 파인튜닝 → 점진적 내재화</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="callout">
+          <strong>제1 원칙</strong>: "핵심 데이터를 누가 소유하는가?"를 판단 기준으로 삼으십시오.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 분야별 핵심 동향 (TABS) -->
+  <section class="section fade-in" id="sector-trends">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">🎬</div>
+        <h2>3. 분야별 핵심 동향</h2>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="film-production">🎬 영화/영상</button>
+        <button class="tab-btn" data-tab="music-industry">🎵 음악</button>
+        <button class="tab-btn" data-tab="gaming-industry">🎮 게임</button>
+        <button class="tab-btn" data-tab="broadcast-streaming">📺 방송/스트리밍</button>
+        <button class="tab-btn" data-tab="korea-market">🇰🇷 한국 시장</button>
+      </div>
+
+      <!-- TAB: 영화/영상 -->
+      <div class="tab-content active" id="film-production">
+        <h3>3.1 영화/영상 제작</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>기술</th><th>현황</th><th>비용 효과</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AI VFX/디에이징</strong></td><td>「히어」(Metaphysic), 「인디아나 존스」(ILM) 등 상용</td><td><strong>30~70% 비용 절감</strong></td></tr>
+              <tr><td><strong>AI 영상 생성</strong></td><td>Sora 종료 → Runway Gen-4, Google Veo 3.1, Adobe Firefly 경쟁</td><td>「더 크리에이터」: 8천만$로 2~3억$급 비주얼</td></tr>
+              <tr><td><strong>AI 편집</strong></td><td>Adobe Premiere AI, DaVinci Neural Engine 성숙</td><td>즉시 도입 가능</td></tr>
+              <tr><td><strong>AI 장편 영화</strong></td><td>Critterz(3천만$/9개월), Post Truth 극장 개봉 완료</td><td>제작비 <strong>1/5~1/10</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h4>Sora 종료 후 대안 전략</h4>
+        <img src="images/sora_alternative_strategy.png" alt="Sora Alternative Strategy" class="report-image" loading="lazy">
+      </div>
+
+      <!-- TAB: 음악 -->
+      <div class="tab-content" id="music-industry">
+        <h3>3.2 음악 산업</h3>
+        <h4>패러다임 전환: 불법 학습 → 라이선스 시대</h4>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>사건</th><th>상태</th><th>의미</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Warner ↔ Udio 합의</strong></td><td><span class="risk-green">완료</span></td><td>아티스트 옵트인 라이선스, 2026년 구독 서비스</td></tr>
+              <tr><td><strong>Warner ↔ Suno 합의</strong></td><td><span class="risk-green">완료</span></td><td>라이선스 기반 신규 모델 출시 예정</td></tr>
+              <tr><td><strong>UMG ↔ Udio 합의</strong></td><td><span class="risk-green">완료</span></td><td>공동 서비스 개발</td></tr>
+              <tr><td><strong>Sony ↔ Suno/Udio</strong></td><td><span class="risk-high">소송 계속</span></td><td>미합의</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>시장 규모</strong>: 글로벌 AI 음악 시장 52억$(2024) → 604억$(2034), CAGR 27.8%</p>
+        <h4>주요 플레이어</h4>
+        <ul style="color:var(--text-secondary); padding-left:1.25rem; margin-bottom:1rem;">
+          <li><strong>Suno</strong>: Series B $1.25억, 밸류에이션 $5억 (2024) <sup class="fn-ref"><a href="#fn12" id="fnref12">[12]</a></sup></li>
+          <li><strong>ElevenLabs</strong>: Series D $5억, 밸류에이션 <strong>$110억</strong> (2026.02) <sup class="fn-ref"><a href="#fn8">[8]</a></sup></li>
+          <li><strong>HYBE Supertone</strong>: Supertone Play 출시(10초 음성 클로닝), 150개+ 음성 캐릭터 <sup class="fn-ref"><a href="#fn13" id="fnref13">[13]</a></sup></li>
+        </ul>
+      </div>
+
+      <!-- TAB: 게임 -->
+      <div class="tab-content" id="gaming-industry">
+        <h3>3.3 게임 산업</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>기술</th><th>현황</th><th>대표 사례</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AI 업스케일링</strong></td><td>DLSS 4.5 (6X Dynamic MFG), 250개+ 게임</td><td>RTX 50 시리즈 출시 완료</td></tr>
+              <tr><td><strong>AI NPC</strong></td><td>상용 배포 시작</td><td>PUBG Ally, inZOI Smart Zoi</td></tr>
+              <tr><td><strong>PCG</strong></td><td>Unreal 5.2+ 공식 지원</td><td>No Man's Sky, Diablo IV</td></tr>
+              <tr><td><strong>AI QA</strong></td><td>테스트 시간 50~70% 단축</td><td>EA SEED, Ubisoft La Forge, modl.ai</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>AI NPC 시장</strong>: Inworld AI $500M+ 밸류에이션, 200ms 이하 레이턴시 달성, Google·NVIDIA·Ubisoft·Xbox 고객사 <sup class="fn-ref"><a href="#fn11">[11]</a></sup></p>
+      </div>
+
+      <!-- TAB: 방송/스트리밍 -->
+      <div class="tab-content" id="broadcast-streaming">
+        <h3>3.4 방송/스트리밍</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>기술</th><th>현황</th><th>경제적 가치</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AI 추천</strong></td><td>Netflix 시청의 80%, YouTube 70%</td><td>Netflix 연간 ~10억$ 절감 <sup class="fn-ref"><a href="#fn14" id="fnref14">[14]</a></sup></td></tr>
+              <tr><td><strong>AI 더빙</strong></td><td>YouTube Auto-Dubbing 베타, ElevenLabs 유니콘</td><td>번역 비용 60~70% 절감</td></tr>
+              <tr><td><strong>AI 앵커</strong></td><td>MBN AI 김주하, 딥브레인AI 200개+ 아바타</td><td>24시간 뉴스 송출</td></tr>
+              <tr><td><strong>AI 하이라이트</strong></td><td>WSC Sports (NBA, FIFA, ESPN)</td><td>자동 편집+배포</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB: 한국 시장 -->
+      <div class="tab-content" id="korea-market">
+        <h3>3.5 한국 시장 핵심 동향</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>기업</th><th>최신 AI 전략</th><th>규모</th></tr></thead>
+            <tbody>
+              <tr><td><strong>HYBE</strong></td><td>"엔터테크" 전면 전환, Supertone Play(10초 클로닝), Syndi8 버추얼 팝그룹</td><td>Supertone 인수 450억원 <sup class="fn-ref"><a href="#fn13">[13]</a></sup></td></tr>
+              <tr><td><strong>SM엔터</strong></td><td>NEXT 3.0 전략, 30년 곡 데이터 AI A&amp;R, HYBE 지분 매각 후 독자 AI 가속</td><td>글로벌 신인 AI 활용</td></tr>
+              <tr><td><strong>네이버웹툰</strong></td><td>Character Chat(335만 사용자), Disney 파트너십(2026.02), 크리에이터 27억$ 지급</td><td>MAU 1.7억+, 나스닥 상장 <sup class="fn-ref"><a href="#fn15" id="fnref15">[15]</a></sup></td></tr>
+              <tr><td><strong>크래프톤</strong></td><td>PUBG Ally AI NPC, inZOI Smart Zoi</td><td>NVIDIA ACE 기반</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. OPPORTUNITY & RISK -->
+  <section class="section fade-in" id="opportunity-risk">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">⚖️</div>
+        <h2>4. Opportunity &amp; Risk Assessment</h2>
+      </div>
+
+      <!-- 4.1 리스크 매트릭스 -->
+      <div id="risk-matrix" class="fade-in">
+        <h3>4.1 리스크 매트릭스</h3>
+        <img src="images/risk_matrix.png" alt="리스크 평가 매트릭스" class="report-image" loading="lazy">
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>리스크</th><th>수준</th><th>근거</th><th>대응</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AI 벤더 종료/피벗</strong></td><td><span class="risk-high">🔴 HIGH</span></td><td>Sora 전격 종료 실증. Disney 10억$ 무산</td><td>멀티벤더, 계약 종료 조항</td></tr>
+              <tr><td><strong>한국 AI 기본법</strong></td><td><span class="risk-high">🔴 HIGH</span></td><td>2026.01 이미 시행. 라벨링 미준수 시 법적 리스크</td><td>TF 즉시 구성</td></tr>
+              <tr><td><strong>EU AI Act</strong></td><td><span class="risk-high">🔴 HIGH</span></td><td>2026.08 전면 시행. 유럽 서비스 필수 대응</td><td>Q3까지 대응 체계</td></tr>
+              <tr><td><strong>M&amp;A 밸류에이션 과열</strong></td><td><span class="risk-high">🔴 HIGH</span></td><td>AI 테마 딜 25%, EA 550억$, 소형 VC -69%</td><td>신중한 투자 판단</td></tr>
+              <tr><td><strong>AI 인재 확보</strong></td><td><span class="risk-high">🔴 HIGH</span></td><td>엔터+AI 교차 역량 극소. Sora팀도 로보틱스 전환</td><td>인재 프로그램 설계</td></tr>
+              <tr><td><strong>AI 저작권 소송</strong></td><td><span class="risk-medium">🟡 MED</span></td><td>음악은 합의 중이나 영상/이미지 미해결</td><td>라이선스 기반 도구 우선</td></tr>
+              <tr><td><strong>소비자 AI 피로감</strong></td><td><span class="risk-medium">🟡 MED</span></td><td>AI 콘텐츠 범람 시 반발 가능</td><td>품질 관리, 라벨링</td></tr>
+              <tr><td><strong>컴퓨팅 비용</strong></td><td><span class="risk-medium">🟡 MED</span></td><td>Sora 종료 사유 = 비용 vs 수익 불균형</td><td>Buy 전략, 비용 모니터링</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4.2 기회 영역 -->
+      <div id="opportunity-areas" class="fade-in">
+        <h3>4.2 기회 영역</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>기회</th><th>예상 ROI</th><th>시장 근거</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AI 더빙/로컬라이제이션</strong></td><td>비용 <strong>60~70% 절감</strong></td><td>ElevenLabs 110억$, 네이버웹툰 100개국 서비스</td></tr>
+              <tr><td><strong>AI VFX 파이프라인 통합</strong></td><td>제작비 <strong>30~70% 절감</strong></td><td>Adobe/DaVinci 성숙 도구 즉시 가용</td></tr>
+              <tr><td><strong>AI 음악 라이선스 도입</strong></td><td>신규 수익원</td><td>시장 52억$→604억$(2034)</td></tr>
+              <tr><td><strong>AI 기반 글로벌 콘텐츠 유통</strong></td><td>유통 시장 확대</td><td>100개국+ 동시 서비스 가능</td></tr>
+              <tr><td><strong>AI 장편 콘텐츠</strong></td><td>제작비 <strong>1/5~1/10</strong></td><td>Critterz 3천만$/9개월 모델</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. STRATEGIC RECOMMENDATIONS -->
+  <section class="section fade-in" id="strategic-recommendations">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">🎯</div>
+        <h2>5. Strategic Recommendations</h2>
+      </div>
+
+      <!-- Tabs for recommendations -->
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="quick-win">🚀 Quick Win (Q2)</button>
+        <button class="tab-btn" data-tab="short-term">📅 단기 (6~12개월)</button>
+        <button class="tab-btn" data-tab="mid-term">📈 중기 (1~2년)</button>
+        <button class="tab-btn" data-tab="monitoring">👁️ 모니터링</button>
+      </div>
+
+      <div class="tab-content active" id="quick-win">
+        <h3>5.1 즉시 실행 — Quick Win (Q2 2026)</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>#</th><th>액션</th><th>기대 효과</th><th>예산(추정)</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>AI 더빙/로컬라이제이션 파일럿</strong></td><td>글로벌 유통 비용 60~70% 절감</td><td>$50~100K</td></tr>
+              <tr><td>2</td><td><strong>AI 기본법 대응 TF 구성</strong></td><td>법적 리스크 차단</td><td>내부 리소스</td></tr>
+              <tr><td>3</td><td><strong>AI 영상 벤더 멀티소싱 전략</strong></td><td>Sora급 리스크 방지</td><td>$30~50K (평가 비용)</td></tr>
+              <tr><td>4</td><td><strong>AI 콘텐츠 라벨링 시스템 구축</strong></td><td>한국+EU 동시 대응</td><td>$100~200K</td></tr>
+              <tr><td>5</td><td><strong>VFX/후반작업 AI 도구 통합</strong></td><td>제작비 30~70% 절감</td><td>$50~150K (라이선스)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="short-term">
+        <h3>5.2 단기 추진 (6~12개월)</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>#</th><th>액션</th><th>기대 효과</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>AI 음악 생성 라이선스 모델 도입</strong></td><td>합법적 AI 음악 활용 체계</td></tr>
+              <tr><td>2</td><td><strong>AI NPC 파일럿 (게임사)</strong></td><td>차세대 게임 경험 선점</td></tr>
+              <tr><td>3</td><td><strong>자사 데이터 기반 추천 고도화</strong></td><td>개인화 깊이 → 시청시간 증가</td></tr>
+              <tr><td>4</td><td><strong>EU AI Act 대응 체계 구축</strong></td><td>유럽 시장 사업 연속성</td></tr>
+              <tr><td>5</td><td><strong>AI 인재 확보 프로그램</strong></td><td>기술 역량 내재화 기반</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="mid-term">
+        <h3>5.3 중기 투자 (1~2년)</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>#</th><th>액션</th><th>기대 효과</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>AI 에이전트 기반 프로덕션 자동화</strong></td><td>파이프라인 효율화 (Gartner: 앱 40% 에이전트 통합)</td></tr>
+              <tr><td>2</td><td><strong>자사 IP 특화 AI 모델 구축</strong></td><td>캐릭터/세계관 콘텐츠 자동 확장</td></tr>
+              <tr><td>3</td><td><strong>AI 장편 콘텐츠 제작 실험</strong></td><td>제작비 1/5~1/10 역량</td></tr>
+              <tr><td>4</td><td><strong>인터랙티브/개인화 콘텐츠</strong></td><td>차세대 소비 경험 선점</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-content" id="monitoring">
+        <h3>5.4 모니터링 대상</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>대상</th><th>트리거 이벤트</th></tr></thead>
+            <tbody>
+              <tr><td><strong>AI 영상 생성 시장 재편</strong></td><td>특정 플랫폼 월간 생성량 50%+ 점유 시</td></tr>
+              <tr><td><strong>AI 저작권 프레임워크</strong></td><td>NYT vs OpenAI 등 핵심 판결 시</td></tr>
+              <tr><td><strong>AI 에이전트 표준화</strong></td><td>Unreal/Unity 에이전트 네이티브 지원 시</td></tr>
+              <tr><td><strong>소비자 AI 수용도</strong></td><td>AI 라벨이 매출에 부정적 영향 시</td></tr>
+              <tr><td><strong>오픈소스 AI</strong></td><td>상용 API 품질 동등 도달 시</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. INVESTMENT ROADMAP -->
+  <section class="section fade-in" id="investment-roadmap">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">💰</div>
+        <h2>6. Investment Roadmap</h2>
+      </div>
+
+      <div id="investment-phases" class="fade-in">
+        <h3>6.1 단계별 투자 프레임</h3>
+        <div class="mermaid-wrapper">
+          <pre class="mermaid">
+gantt
+    title Investment Roadmap 2026-2027
+    dateFormat YYYY-MM
+    axisFormat %Y Q%q
+
+    section Quick Win
+    AI 더빙 파일럿           :active, qw1, 2026-04, 2026-06
+    AI 기본법 TF             :active, qw2, 2026-04, 2026-06
+    멀티소싱 전략             :active, qw3, 2026-04, 2026-07
+    라벨링 시스템 구축         :active, qw4, 2026-04, 2026-07
+    VFX AI 도구 통합          :active, qw5, 2026-04, 2026-07
+
+    section 단기 추진
+    AI 음악 라이선스 도입      :st1, 2026-07, 2026-12
+    AI NPC 파일럿             :st2, 2026-07, 2026-12
+    EU AI Act 대응            :st3, 2026-07, 2026-12
+    AI 인재 프로그램           :st4, 2026-08, 2027-01
+
+    section 중기 투자
+    AI 에이전트 자동화         :mt1, 2026-10, 2027-06
+    자사 IP 특화 AI 모델       :mt2, 2026-11, 2027-06
+    AI 장편 콘텐츠 실험        :mt3, 2027-01, 2027-06
+
+    section 성과 확인
+    성과 리뷰 및 스케일업       :rv1, 2027-06, 2027-12
+          </pre>
+        </div>
+        <img src="images/investment_roadmap.png" alt="Investment Roadmap (정적 이미지 폴백)" class="report-image" loading="lazy" style="margin-top:0;">
+      </div>
+
+      <div id="kpi-framework" class="fade-in">
+        <h3>6.2 KPI 프레임워크</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>단계</th><th>KPI</th><th>목표</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Quick Win</strong></td><td>더빙 비용 절감률</td><td>50%+</td></tr>
+              <tr><td><strong>Quick Win</strong></td><td>기본법 감사 완료율</td><td>100%</td></tr>
+              <tr><td><strong>단기</strong></td><td>AI 도구 도입 프로젝트 수</td><td>5개+</td></tr>
+              <tr><td><strong>단기</strong></td><td>글로벌 서비스 언어 수</td><td>2배 확대</td></tr>
+              <tr><td><strong>중기</strong></td><td>AI 활용 콘텐츠 비중</td><td>전체 제작의 30%+</td></tr>
+              <tr><td><strong>중기</strong></td><td>AI 관련 매출 기여도</td><td>15%+</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SORA 교훈 -->
+  <section class="section fade-in" id="sora-lessons">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">⚠️</div>
+        <h2>7. Sora 종료: 핵심 교훈</h2>
+      </div>
+
+      <div id="sora-timeline" class="fade-in">
+        <h3>타임라인</h3>
+        <div class="mermaid-wrapper">
+          <pre class="mermaid">
+timeline
+    title OpenAI Sora: Rise and Fall
+    section 성장기
+        2024.12 : Sora 1세대 출시
+                : ChatGPT Plus/Pro 공개
+        2025.09 : Sora 2 공개
+                : iOS/Android 앱 출시
+    section 정점
+        2025.12 : Disney 10억$ 파트너십 체결
+                : 200개+ 캐릭터 라이선싱
+    section 종료
+        2026.03.24 : ❌ 전격 서비스 종료
+                   : 비용 vs 수익 불균형
+                   : IPO 준비 비용 절감
+                   : ❌ Disney 투자 무산
+          </pre>
+        </div>
+        <img src="images/sora_timeline.png" alt="Sora Timeline (정적 이미지 폴백)" class="report-image" loading="lazy" style="margin-top:0;">
+      </div>
+
+      <div id="sora-lessons-learned" class="fade-in">
+        <h3>세 가지 교훈</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>#</th><th>교훈</th><th>시사점</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><strong>기술 우수성 ≠ 사업 지속성</strong></td><td>벤더 선정 시 기술력+수익모델+재무건전성 종합 평가</td></tr>
+              <tr><td>2</td><td><strong>빅테크 파트너십도 하루아침에 무산</strong></td><td>핵심 파이프라인의 단일 외부 의존 = 사업 연속성 리스크</td></tr>
+              <tr><td>3</td><td><strong>AI 영상 시장은 아직 승자 없음</strong></td><td>멀티벤더 전략이 유일한 안전장치</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="sora-alternatives" class="fade-in">
+        <h3>대안 벤더 비교</h3>
+        <img src="images/sora_alternative_strategy.png" alt="Sora Alternative Strategy" class="report-image" loading="lazy">
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>플랫폼</th><th>강점</th><th>약점</th><th>포지션</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Google Veo 3.1</strong></td><td>네이티브 오디오 동기화(유일), 립싱크 120ms</td><td>Google 생태계 종속</td><td>기술 리더</td></tr>
+              <tr><td><strong>Runway Gen-4</strong></td><td>시네마틱 최고 품질, 디렉터급 제어</td><td>밸류 30억$(재무 리스크?)</td><td>크리에이터 1순위</td></tr>
+              <tr><td><strong>Adobe Firefly</strong></td><td>Premiere Pro 통합, 기존 워크플로우 연계, 4K</td><td>독립 사용 한계</td><td>엔터프라이즈 표준 후보</td></tr>
+              <tr><td><strong>Pika 2.5</strong></td><td>가격 경쟁력, Scene Ingredients</td><td>프로덕션급 한계</td><td>인디/크리에이터</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 한국 AI 기본법 -->
+  <section class="section fade-in" id="korea-ai-law">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">📜</div>
+        <h2>8. 한국 AI 기본법 대응</h2>
+      </div>
+
+      <div id="ai-law-obligations" class="fade-in">
+        <h3>8.1 핵심 의무</h3>
+        <div class="table-wrapper">
+          <table class="report-table">
+            <thead><tr><th>의무</th><th>해당 서비스</th><th>시급도</th></tr></thead>
+            <tbody>
+              <tr><td><strong>생성형 AI 라벨링</strong></td><td>AI 음악, 영상, 이미지, 더빙</td><td><span class="risk-high">즉시 (시행 중)</span></td></tr>
+              <tr><td><strong>고영향 AI 분류 확인</strong></td><td>추천 알고리즘(해석에 따라 상이)</td><td><span class="risk-high">즉시</span></td></tr>
+              <tr><td><strong>외국 AI 벤더 대리인</strong></td><td>ElevenLabs, Runway 등 활용 시 확인</td><td><span class="risk-medium">Q2</span></td></tr>
+              <tr><td><strong>AI 윤리위원회 권고</strong></td><td>딥페이크, 보이스 클로닝</td><td><span class="risk-medium">연내</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div id="compliance-checklist" class="fade-in">
+        <h3>8.2 컴플라이언스 체크리스트</h3>
+
+        <h4>Phase 1 — 즉시 (Q1~Q2 2026)</h4>
+        <ul class="checklist">
+          <li>자사 AI 활용 현황 전수 조사</li>
+          <li>"고영향 AI" 해당 여부 법률 검토</li>
+          <li>AI 생성 콘텐츠 라벨링 시스템 구현</li>
+          <li>외부 AI 벤더 한국 대리인 확인</li>
+          <li>AI 기본법 대응 TF 구성 (CTO 직속)</li>
+        </ul>
+
+        <h4>Phase 2 — 안정화 (Q3~Q4 2026)</h4>
+        <ul class="checklist">
+          <li>AI 거버넌스 프레임워크 수립</li>
+          <li>AI 윤리 리뷰 프로세스 도입</li>
+          <li>비가청 워터마크 등 기술적 라벨링 수단</li>
+          <li>직원 AI 리터러시 교육</li>
+        </ul>
+
+        <h4>Phase 3 — 선도적 활용 (2027~)</h4>
+        <ul class="checklist">
+          <li>AI 규제 샌드박스 참여</li>
+          <li>정부 AI 콘텐츠 지원 사업 활용 (문체부 연간 수백억 원)</li>
+          <li>K-콘텐츠 AI 융합 전략 연계</li>
+        </ul>
+
+        <div class="callout success">
+          💡 한국 기본법 준수 체계 = EU AI Act(2026.08) 대응의 기반이 됩니다
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 기업 투자 현황 -->
+  <section class="section fade-in" id="company-investments">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">🏢</div>
+        <h2>9. 주요 기업 AI 투자 현황</h2>
+      </div>
+      <p style="margin-bottom:0.5rem; font-size:0.85rem; color:var(--text-muted);">팩트체크 완료</p>
+      <div class="table-wrapper">
+        <table class="report-table">
+          <thead><tr><th>기업</th><th>라운드/거래</th><th>금액</th><th>밸류에이션</th><th>출처</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ElevenLabs</strong></td><td>Series D (2026.02)</td><td>$5억</td><td><strong>$110억</strong></td><td>CNBC <sup class="fn-ref"><a href="#fn8">[8]</a></sup></td></tr>
+            <tr><td><strong>Runway</strong></td><td>Series D (2025.04)</td><td>$3.08억</td><td><strong>$30억</strong></td><td>Variety <sup class="fn-ref"><a href="#fn16" id="fnref16">[16]</a></sup></td></tr>
+            <tr><td><strong>Synthesia</strong></td><td>Series E (2026.01)</td><td>$2억</td><td><strong>$40억</strong></td><td>TechCrunch <sup class="fn-ref"><a href="#fn17" id="fnref17">[17]</a></sup></td></tr>
+            <tr><td><strong>Suno</strong></td><td>Series B (2024.05)</td><td>$1.25억</td><td>$5억</td><td>Billboard <sup class="fn-ref"><a href="#fn12">[12]</a></sup></td></tr>
+            <tr><td><strong>Pika Labs</strong></td><td>누적</td><td>$1.35억</td><td>-</td><td>Pika Blog <sup class="fn-ref"><a href="#fn18" id="fnref18">[18]</a></sup></td></tr>
+            <tr><td><strong>Inworld AI</strong></td><td>Series A+</td><td>$5,000만</td><td>$500M+</td><td>VentureBeat <sup class="fn-ref"><a href="#fn19" id="fnref19">[19]</a></sup></td></tr>
+            <tr><td><strong>HYBE→Supertone</strong></td><td>인수 (2022)</td><td>450억원</td><td>-</td><td>MBW <sup class="fn-ref"><a href="#fn13">[13]</a></sup></td></tr>
+            <tr><td><strong>EA</strong></td><td>사모펀드 인수 (2026)</td><td><strong>$550억</strong></td><td>-</td><td>보도 <sup class="fn-ref"><a href="#fn5">[5]</a></sup></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 참고문헌 -->
+  <section class="section fade-in" id="references">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">📚</div>
+        <h2>참고문헌</h2>
+      </div>
+
+      <!-- Tier 1 -->
+      <div class="accordion-item open">
+        <button class="accordion-header" aria-expanded="true">
+          <span>Tier 1 — 1차 출처</span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body" style="max-height:1000px;">
+          <div class="accordion-body-inner">
+            <div class="footnotes">
+              <ol>
+                <li id="fn1">Grand View Research, "AI in Media &amp; Entertainment Market Report, 2030" — 2024년 $259.8B, CAGR 24.2% <a href="#fnref1" class="fn-back">↩</a></li>
+                <li id="fn2">MarketsandMarkets, "AI in Media Market" — 2024년 $82.1B, CAGR 35.6% <a href="#fnref2" class="fn-back">↩</a></li>
+                <li id="fn3">PwC, "Sizing the Prize: AI's $15.7 Trillion Opportunity" (2017) — World Economic Forum 인용 <a href="#fnref3" class="fn-back">↩</a></li>
+                <li id="fn4">McKinsey, "Beyond the Hype: Capturing the Potential of AI and Gen AI in TMT" (2024) <a href="#fnref4" class="fn-back">↩</a></li>
+                <li id="fn5">AlixPartners, "2026 Media &amp; Entertainment M&amp;A Predictions" — GlobeNewsWire (2025.11) <a href="#fnref5" class="fn-back">↩</a></li>
+                <li id="fn6">CNN, "OpenAI shutting down Sora video app" (2026.03.24) — Variety 교차 확인 <a href="#fnref6" class="fn-back">↩</a></li>
+                <li id="fn7">Musically, "UMG settles Udio lawsuit, plan new AI music service" (2025.10); McKool Smith 소송 업데이트 <a href="#fnref7" class="fn-back">↩</a></li>
+                <li id="fn8">CNBC, "NVIDIA-backed AI startup ElevenLabs hits $11 billion valuation" (2026.02.04); ElevenLabs 공식 블로그 <a href="#fnref8" class="fn-back">↩</a></li>
+                <li id="fn9">CSET Georgetown, "South Korea AI Law 2025" — 2025.01.21 국회 통과, 2026.01.22 시행 <a href="#fnref9" class="fn-back">↩</a></li>
+                <li id="fn10">PetaPixel, "OpenAI Critterz AI Movie" (2025.09); Yahoo Finance, "Post Truth first AI film" <a href="#fnref10" class="fn-back">↩</a></li>
+                <li id="fn11">Inworld AI GDC 2025 Blog; NewscastStudio, "Agentic AI in Broadcast" (2025.12) <a href="#fnref11" class="fn-back">↩</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 2 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>Tier 2 — 2차 출처</span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="footnotes">
+              <ol start="12">
+                <li id="fn12">Billboard, "AI Music Company Suno Raises $125M" (2024.05) <a href="#fnref12" class="fn-back">↩</a></li>
+                <li id="fn13">Music Business Worldwide, "HYBE acquires Supertone" / "Supertone Play TTS tool" <a href="#fnref13" class="fn-back">↩</a></li>
+                <li id="fn14">Marketingino, "Netflix Recommendation Algorithm" — 시청 80%, 연간 $10억 절감 <a href="#fnref14" class="fn-back">↩</a></li>
+                <li id="fn15">Nasdaq, "Naver-backed Webtoon raises $315M in IPO" (2024.06); Seoul Economic Daily 네이버웹툰-Disney 파트너십 <a href="#fnref15" class="fn-back">↩</a></li>
+                <li id="fn16">Variety, "AI Runway Raises $308M, Valuation $3B" (2025.04) <a href="#fnref16" class="fn-back">↩</a></li>
+                <li id="fn17">TechCrunch, "Synthesia hits $4B valuation" (2026.01) <a href="#fnref17" class="fn-back">↩</a></li>
+                <li id="fn18">Pika Art Blog, 투자 공식 발표 <a href="#fnref18" class="fn-back">↩</a></li>
+                <li id="fn19">VentureBeat, "Inworld AI raises new round at $500M valuation" <a href="#fnref19" class="fn-back">↩</a></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tier 3 -->
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>Tier 3 — 참고 출처</span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <ul style="color:var(--text-muted); font-size:0.85rem; padding-left:1.25rem;">
+              <li>RIAA, "Record Companies Bring Landmark Cases Against Suno and Udio" (2024.06)</li>
+              <li>IFPI Global Music Report 2024</li>
+              <li>GDC 2024 State of the Game Industry Survey — Game Developer</li>
+              <li>EU AI Act Implementation Timeline — artificialintelligenceact.eu</li>
+              <li>NVIDIA GeForce News — RTX 5090/5080, DLSS 4/4.5</li>
+              <li>Adobe Blog — Firefly Video Updates, Premiere Pro 2026</li>
+              <li>Google DeepMind — Veo 3/3.1</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 부록 A -->
+  <section class="section fade-in" id="appendix-a">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">📄</div>
+        <h2>부록 A: 경영진 원페이저</h2>
+      </div>
+
+      <div class="accordion-item open">
+        <button class="accordion-header" aria-expanded="true">
+          <span>핵심 지표 요약</span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body" style="max-height:1000px;">
+          <div class="accordion-body-inner">
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead><tr><th>핵심 지표</th><th>수치</th><th>출처</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>글로벌 엔터 AI 시장 (2024)</strong></td><td>259.8억$</td><td>GVR</td></tr>
+                  <tr><td><strong>글로벌 엔터 AI 시장 (2030)</strong></td><td>994.8억$ (CAGR 24.2%)</td><td>GVR</td></tr>
+                  <tr><td><strong>AI 음악 시장 (2024→2034)</strong></td><td>52억$ → 604억$</td><td>업계 추정</td></tr>
+                  <tr><td><strong>AI 에이전트 시장 (2025→2030)</strong></td><td>78.4억$ → 526.2억$</td><td>Gartner</td></tr>
+                  <tr><td><strong>AI VFX 비용 절감</strong></td><td>30~70%</td><td>업계 실증</td></tr>
+                  <tr><td><strong>AI 번역 비용 절감</strong></td><td>60~70%</td><td>네이버웹툰</td></tr>
+                  <tr><td><strong>한국 AI 기본법 시행일</strong></td><td>2026.01.22</td><td>법률 확정</td></tr>
+                  <tr><td><strong>EU AI Act 전면 시행일</strong></td><td>2026.08</td><td>EU 확정</td></tr>
+                  <tr><td><strong>2026 엔터 M&amp;A 전망</strong></td><td>800억$+</td><td>AlixPartners</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 부록 B -->
+  <section class="section fade-in" id="appendix-b">
+    <div class="content-wrapper">
+      <div class="section-header">
+        <div class="section-icon">📖</div>
+        <h2>부록 B: 용어 정의</h2>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header" aria-expanded="false">
+          <span>용어 정의 펼치기</span>
+          <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+            <div class="table-wrapper">
+              <table class="report-table">
+                <thead><tr><th>용어</th><th>정의</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>CAGR</strong></td><td>연평균 복합 성장률 (Compound Annual Growth Rate)</td></tr>
+                  <tr><td><strong>DLSS</strong></td><td>Deep Learning Super Sampling — NVIDIA의 AI 업스케일링 기술</td></tr>
+                  <tr><td><strong>NPC</strong></td><td>Non-Player Character — 게임 내 AI 제어 캐릭터</td></tr>
+                  <tr><td><strong>PCG</strong></td><td>Procedural Content Generation — 절차적 콘텐츠 생성</td></tr>
+                  <tr><td><strong>TTS</strong></td><td>Text-to-Speech — 텍스트 음성 변환</td></tr>
+                  <tr><td><strong>VFX</strong></td><td>Visual Effects — 시각 효과</td></tr>
+                  <tr><td><strong>GVR</strong></td><td>Grand View Research (시장조사 기관)</td></tr>
+                  <tr><td><strong>MnM</strong></td><td>MarketsandMarkets (시장조사 기관)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="content-wrapper">
+      <p><strong>면책 조항</strong>: 본 보고서는 2026년 3월 25일 기준 공개 데이터에 기반합니다. 시장 규모 수치는 조사 기관별 방법론 차이로 편차가 있으며(GVR 259.8억$ vs MnM 82.1억$), 의사결정 시 범위값으로 참고하시기 바랍니다. 모든 수치는 팩트체크를 거쳤으나, 최종 의사결정 전 1차 출처 직접 확인을 권장합니다.</p>
+      <p style="margin-top:1rem; color:var(--text-muted);">Confidential · CTO Report · Version 2.0 · 2026년 3월 25일</p>
+    </div>
+  </footer>
+
+</div><!-- /main-content -->
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTopBtn" aria-label="맨 위로">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+<!-- MERMAID.JS -->
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+mermaid.initialize({
+  startOnLoad: true,
+  theme: 'dark',
+  themeVariables: {
+    primaryColor: '#3b82f6',
+    primaryTextColor: '#f8fafc',
+    lineColor: '#64748b',
+    sectionBkgColor: '#1e293b',
+    sectionBkgColor0: '#1e293b',
+    sectionBkgColor1: '#263548',
+    taskBkgColor: '#3b82f6',
+    activeTaskBkgColor: '#3b82f6',
+    taskTextColor: '#f8fafc',
+    todayLineColor: '#ef4444',
+  },
+  gantt: {
+    titleTopMargin: 15,
+    barHeight: 24,
+    barGap: 6,
+    topPadding: 40,
+    leftPadding: 100,
+    numberSectionStyles: 4,
+  }
+});
+</script>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ==========================
+     HAMBURGER / SIDEBAR
+     ========================== */
+  const sidebar = document.getElementById('sidebar');
+  const hamburger = document.getElementById('hamburgerBtn');
+  const overlay = document.getElementById('sidebarOverlay');
+
+  function openSidebar() {
+    sidebar.classList.add('open');
+    overlay.classList.add('open');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('open');
+  }
+
+  hamburger.addEventListener('click', function() {
+    if (sidebar.classList.contains('open')) closeSidebar();
+    else openSidebar();
+  });
+  overlay.addEventListener('click', closeSidebar);
+
+  /* ==========================
+     TOC ACTIVE STATE (Intersection Observer)
+     ========================== */
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const sections = [];
+
+  tocLinks.forEach(function(link) {
+    var id = link.getAttribute('data-section');
+    var el = document.getElementById(id);
+    if (el) sections.push({ id: id, el: el, link: link });
+  });
+
+  var currentActive = null;
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        tocLinks.forEach(function(l) { l.classList.remove('active'); });
+        var match = document.querySelector('.toc-link[data-section="' + id + '"]');
+        if (match) {
+          match.classList.add('active');
+          currentActive = id;
+        }
+      }
+    });
+  }, {
+    rootMargin: '-20% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sections.forEach(function(s) { observer.observe(s.el); });
+
+  // Close sidebar on link click (mobile)
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (window.innerWidth <= 768) closeSidebar();
+    });
+  });
+
+  /* ==========================
+     FADE-IN ANIMATION
+     ========================== */
+  var fadeEls = document.querySelectorAll('.fade-in');
+  var fadeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+
+  /* ==========================
+     TABS
+     ========================== */
+  document.querySelectorAll('.tabs').forEach(function(tabsContainer) {
+    var buttons = tabsContainer.querySelectorAll('.tab-btn');
+    var parent = tabsContainer.parentElement;
+
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var tabId = this.getAttribute('data-tab');
+
+        // Deactivate all
+        buttons.forEach(function(b) { b.classList.remove('active'); });
+        parent.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+
+        // Activate selected
+        this.classList.add('active');
+        var target = document.getElementById(tabId);
+        if (target) target.classList.add('active');
+      });
+    });
+  });
+
+  /* ==========================
+     ACCORDION
+     ========================== */
+  document.querySelectorAll('.accordion-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      var item = this.parentElement;
+      var body = item.querySelector('.accordion-body');
+      var isOpen = item.classList.contains('open');
+
+      if (isOpen) {
+        item.classList.remove('open');
+        body.style.maxHeight = '0';
+        this.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        this.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Initialize open accordions
+  document.querySelectorAll('.accordion-item.open').forEach(function(item) {
+    var body = item.querySelector('.accordion-body');
+    if (body) body.style.maxHeight = body.scrollHeight + 'px';
+  });
+
+  /* ==========================
+     SCROLL TO TOP
+     ========================== */
+  var scrollBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 500) scrollBtn.classList.add('visible');
+    else scrollBtn.classList.remove('visible');
+  });
+  scrollBtn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "footnotes": [
+    {"id": 1, "text": "Grand View Research, \"AI in Media & Entertainment Market Report, 2030\" — 2024년 $259.8B, CAGR 24.2%", "section": "market", "tier": 1},
+    {"id": 2, "text": "MarketsandMarkets, \"AI in Media Market\" — 2024년 $82.1B, CAGR 35.6%", "section": "market", "tier": 1},
+    {"id": 3, "text": "PwC, \"Sizing the Prize: AI's $15.7 Trillion Opportunity\" (2017) — World Economic Forum 인용", "section": "market", "tier": 1},
+    {"id": 4, "text": "McKinsey, \"Beyond the Hype: Capturing the Potential of AI and Gen AI in TMT\" (2024)", "section": "market", "tier": 1},
+    {"id": 5, "text": "AlixPartners, \"2026 Media & Entertainment M&A Predictions\" — GlobeNewsWire (2025.11)", "section": "market", "tier": 1},
+    {"id": 6, "text": "CNN, \"OpenAI shutting down Sora video app\" (2026.03.24) — Variety 교차 확인", "section": "sora", "tier": 1},
+    {"id": 7, "text": "Musically, \"UMG settles Udio lawsuit, plan new AI music service\" (2025.10); McKool Smith 소송 업데이트", "section": "music", "tier": 1},
+    {"id": 8, "text": "CNBC, \"NVIDIA-backed AI startup ElevenLabs hits $11 billion valuation\" (2026.02.04); ElevenLabs 공식 블로그", "section": "investment", "tier": 1},
+    {"id": 9, "text": "CSET Georgetown, \"South Korea AI Law 2025\" — 2025.01.21 국회 통과, 2026.01.22 시행", "section": "regulation", "tier": 1},
+    {"id": 10, "text": "PetaPixel, \"OpenAI Critterz AI Movie\" (2025.09); Yahoo Finance, \"Post Truth first AI film\"", "section": "film", "tier": 1},
+    {"id": 11, "text": "Inworld AI GDC 2025 Blog; NewscastStudio, \"Agentic AI in Broadcast\" (2025.12)", "section": "gaming", "tier": 1},
+    {"id": 12, "text": "Billboard, \"AI Music Company Suno Raises $125M\" (2024.05)", "section": "music", "tier": 2},
+    {"id": 13, "text": "Music Business Worldwide, \"HYBE acquires Supertone\" / \"Supertone Play TTS tool\"", "section": "korea", "tier": 2},
+    {"id": 14, "text": "Marketingino, \"Netflix Recommendation Algorithm\" — 시청 80%, 연간 $10억 절감", "section": "streaming", "tier": 2},
+    {"id": 15, "text": "Nasdaq, \"Naver-backed Webtoon raises $315M in IPO\" (2024.06); Seoul Economic Daily 네이버웹툰-Disney 파트너십", "section": "korea", "tier": 2},
+    {"id": 16, "text": "Variety, \"AI Runway Raises $308M, Valuation $3B\" (2025.04)", "section": "investment", "tier": 2},
+    {"id": 17, "text": "TechCrunch, \"Synthesia hits $4B valuation\" (2026.01)", "section": "investment", "tier": 2},
+    {"id": 18, "text": "Pika Art Blog, 투자 공식 발표", "section": "investment", "tier": 2},
+    {"id": 19, "text": "VentureBeat, \"Inworld AI raises new round at $500M valuation\"", "section": "gaming", "tier": 2}
+  ]
+}

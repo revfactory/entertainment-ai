@@ -1,0 +1,100 @@
+{
+  "market_size": {
+    "title": "글로벌 엔터테인먼트 AI 시장",
+    "datasets": [
+      {
+        "source": "Grand View Research",
+        "data": [
+          {"year": 2024, "value": 259.8, "unit": "억$"},
+          {"year": 2030, "value": 994.8, "unit": "억$"}
+        ],
+        "cagr": 24.2
+      },
+      {
+        "source": "MarketsandMarkets",
+        "data": [
+          {"year": 2024, "value": 82.1, "unit": "억$"},
+          {"year": 2030, "value": 510.8, "unit": "억$"}
+        ],
+        "cagr": 35.6
+      }
+    ],
+    "supplementary": [
+      {"source": "PwC", "metric": "AI 글로벌 GDP 기여 (2030)", "value": 15.7, "unit": "조 달러"},
+      {"source": "McKinsey", "metric": "생성형 AI 미디어/엔터 생산성 향상", "value_range": [800, 1300], "unit": "억 달러/년"},
+      {"source": "AlixPartners", "metric": "2026 미디어&엔터 M&A 규모", "value": 800, "unit": "억 달러+", "ai_deal_share": "25%"}
+    ]
+  },
+  "ai_music_market": {
+    "title": "글로벌 AI 음악 시장",
+    "data": [
+      {"year": 2024, "value": 52, "unit": "억$"},
+      {"year": 2034, "value": 604, "unit": "억$"}
+    ],
+    "cagr": 27.8
+  },
+  "ai_agent_market": {
+    "title": "AI 에이전트 시장",
+    "data": [
+      {"year": 2025, "value": 78.4, "unit": "억$"},
+      {"year": 2030, "value": 526.2, "unit": "억$"}
+    ],
+    "source": "Gartner"
+  },
+  "regional_market": {
+    "title": "지역별 시장 점유율",
+    "items": [
+      {"region": "북미", "share": "~40%", "cagr": "~24%", "drivers": "할리우드 스튜디오, Big Tech(Netflix, Google, Meta)"},
+      {"region": "아시아태평양", "share": "~30%", "cagr": "~30%+", "drivers": "K-콘텐츠, 중국 ByteDance/Tencent, 일본 애니메이션"},
+      {"region": "유럽", "share": "~20%", "cagr": "~22%", "drivers": "EU AI Act 규제 선도, BBC/ITV AI 도입"}
+    ]
+  },
+  "investment": {
+    "title": "주요 기업 AI 투자 현황",
+    "items": [
+      {"company": "ElevenLabs", "valuation": 110, "valuation_unit": "억$", "funding": 5, "funding_unit": "억$", "round": "Series D", "date": "2026.02"},
+      {"company": "Runway", "valuation": 30, "valuation_unit": "억$", "funding": 3.08, "funding_unit": "억$", "round": "Series D", "date": "2025.04"},
+      {"company": "Synthesia", "valuation": 40, "valuation_unit": "억$", "funding": 2, "funding_unit": "억$", "round": "Series E", "date": "2026.01"},
+      {"company": "Suno", "valuation": 5, "valuation_unit": "억$", "funding": 1.25, "funding_unit": "억$", "round": "Series B", "date": "2024.05"},
+      {"company": "Pika Labs", "valuation": null, "funding": 1.35, "funding_unit": "억$", "round": "누적", "date": null},
+      {"company": "Inworld AI", "valuation": 5, "valuation_unit": "억$", "funding": 0.5, "funding_unit": "억$", "round": "Series A+", "date": null},
+      {"company": "HYBE→Supertone", "valuation": null, "funding": 450, "funding_unit": "억원", "round": "인수", "date": "2022"},
+      {"company": "EA", "valuation": null, "funding": 550, "funding_unit": "억$", "round": "사모펀드 인수", "date": "2026"}
+    ]
+  },
+  "cost_savings": {
+    "title": "AI 활용 비용 절감 효과",
+    "items": [
+      {"category": "AI VFX/디에이징", "saving_range": [30, 70], "unit": "%"},
+      {"category": "AI 더빙/번역", "saving_range": [60, 70], "unit": "%"},
+      {"category": "AI 장편 제작비", "saving_description": "1/5~1/10"},
+      {"category": "AI QA 테스트 시간", "saving_range": [50, 70], "unit": "%"},
+      {"category": "Netflix AI 추천 절감", "saving_value": 10, "unit": "억$/년"}
+    ]
+  },
+  "risk_counts": {
+    "high": 5,
+    "medium": 3,
+    "risks": [
+      {"name": "AI 벤더 종료/피벗", "level": "HIGH"},
+      {"name": "한국 AI 기본법", "level": "HIGH"},
+      {"name": "EU AI Act", "level": "HIGH"},
+      {"name": "M&A 밸류에이션 과열", "level": "HIGH"},
+      {"name": "AI 인재 확보", "level": "HIGH"},
+      {"name": "AI 저작권 소송", "level": "MEDIUM"},
+      {"name": "소비자 AI 피로감", "level": "MEDIUM"},
+      {"name": "컴퓨팅 비용", "level": "MEDIUM"}
+    ]
+  },
+  "kpi_framework": {
+    "title": "KPI 프레임워크",
+    "items": [
+      {"phase": "Quick Win", "kpi": "더빙 비용 절감률", "target": "50%+"},
+      {"phase": "Quick Win", "kpi": "기본법 감사 완료율", "target": "100%"},
+      {"phase": "단기", "kpi": "AI 도구 도입 프로젝트 수", "target": "5개+"},
+      {"phase": "단기", "kpi": "글로벌 서비스 언어 수", "target": "2배 확대"},
+      {"phase": "중기", "kpi": "AI 활용 콘텐츠 비중", "target": "전체 제작의 30%+"},
+      {"phase": "중기", "kpi": "AI 관련 매출 기여도", "target": "15%+"}
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "items": [
+    {
+      "id": "executive-summary",
+      "title": "Executive Summary",
+      "icon": "📋"
+    },
+    {
+      "id": "strategic-context",
+      "title": "Strategic Context: 시장 환경",
+      "icon": "📊",
+      "children": [
+        {"id": "global-market", "title": "글로벌 시장 규모"},
+        {"id": "regional-market", "title": "지역별 시장"},
+        {"id": "market-signals", "title": "2026 Q1 시장 전환 시그널"}
+      ]
+    },
+    {
+      "id": "technology-landscape",
+      "title": "Technology Landscape: 기술 성숙도 매트릭스",
+      "icon": "🔬",
+      "children": [
+        {"id": "tech-maturity", "title": "기술별 성숙도 평가"},
+        {"id": "build-vs-buy", "title": "Build vs Buy 판단 가이드"}
+      ]
+    },
+    {
+      "id": "sector-trends",
+      "title": "분야별 핵심 동향",
+      "icon": "🎬",
+      "children": [
+        {"id": "film-production", "title": "영화/영상 제작"},
+        {"id": "music-industry", "title": "음악 산업"},
+        {"id": "gaming-industry", "title": "게임 산업"},
+        {"id": "broadcast-streaming", "title": "방송/스트리밍"},
+        {"id": "korea-market", "title": "한국 시장 핵심 동향"}
+      ]
+    },
+    {
+      "id": "opportunity-risk",
+      "title": "Opportunity & Risk Assessment",
+      "icon": "⚖️",
+      "children": [
+        {"id": "risk-matrix", "title": "리스크 매트릭스"},
+        {"id": "opportunity-areas", "title": "기회 영역"}
+      ]
+    },
+    {
+      "id": "strategic-recommendations",
+      "title": "Strategic Recommendations",
+      "icon": "🎯",
+      "children": [
+        {"id": "quick-win", "title": "즉시 실행 — Quick Win (Q2 2026)"},
+        {"id": "short-term", "title": "단기 추진 (6~12개월)"},
+        {"id": "mid-term", "title": "중기 투자 (1~2년)"},
+        {"id": "monitoring", "title": "모니터링 대상"}
+      ]
+    },
+    {
+      "id": "investment-roadmap",
+      "title": "Investment Roadmap",
+      "icon": "💰",
+      "children": [
+        {"id": "investment-phases", "title": "단계별 투자 프레임"},
+        {"id": "kpi-framework", "title": "KPI 프레임워크"}
+      ]
+    },
+    {
+      "id": "sora-lessons",
+      "title": "Sora 종료: 핵심 교훈",
+      "icon": "⚠️",
+      "children": [
+        {"id": "sora-timeline", "title": "타임라인"},
+        {"id": "sora-lessons-learned", "title": "세 가지 교훈"},
+        {"id": "sora-alternatives", "title": "대안 벤더 비교"}
+      ]
+    },
+    {
+      "id": "korea-ai-law",
+      "title": "한국 AI 기본법 대응",
+      "icon": "📜",
+      "children": [
+        {"id": "ai-law-obligations", "title": "핵심 의무"},
+        {"id": "compliance-checklist", "title": "컴플라이언스 체크리스트"}
+      ]
+    },
+    {
+      "id": "company-investments",
+      "title": "주요 기업 AI 투자 현황",
+      "icon": "🏢"
+    },
+    {
+      "id": "references",
+      "title": "참고문헌",
+      "icon": "📚"
+    },
+    {
+      "id": "appendix-a",
+      "title": "부록 A: 경영진 원페이저",
+      "icon": "📄"
+    },
+    {
+      "id": "appendix-b",
+      "title": "부록 B: 용어 정의",
+      "icon": "📖"
+    }
+  ]
+}

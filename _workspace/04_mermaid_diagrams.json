@@ -1,0 +1,18 @@
+{
+  "diagrams": [
+    {
+      "id": "investment-roadmap-gantt",
+      "type": "gantt",
+      "section": "investment-roadmap",
+      "title": "Investment Roadmap 2026-2027",
+      "code": "gantt\n    title Investment Roadmap 2026-2027\n    dateFormat YYYY-MM\n    axisFormat %Y Q%q\n\n    section Quick Win\n    AI 더빙 파일럿           :active, qw1, 2026-04, 2026-06\n    AI 기본법 TF             :active, qw2, 2026-04, 2026-06\n    멀티소싱 전략             :active, qw3, 2026-04, 2026-07\n    라벨링 시스템 구축         :active, qw4, 2026-04, 2026-07\n    VFX AI 도구 통합          :active, qw5, 2026-04, 2026-07\n\n    section 단기 추진\n    AI 음악 라이선스 도입      :st1, 2026-07, 2026-12\n    AI NPC 파일럿             :st2, 2026-07, 2026-12\n    EU AI Act 대응            :st3, 2026-07, 2026-12\n    AI 인재 프로그램           :st4, 2026-08, 2027-01\n\n    section 중기 투자\n    AI 에이전트 자동화         :mt1, 2026-10, 2027-06\n    자사 IP 특화 AI 모델       :mt2, 2026-11, 2027-06\n    AI 장편 콘텐츠 실험        :mt3, 2027-01, 2027-06\n\n    section 성과 확인\n    성과 리뷰 & 스케일업       :rv1, 2027-06, 2027-12"
+    },
+    {
+      "id": "sora-timeline",
+      "type": "timeline",
+      "section": "sora",
+      "title": "OpenAI Sora: Rise and Fall",
+      "code": "timeline\n    title OpenAI Sora: Rise and Fall\n    section 성장기\n        2024.12 : Sora 1세대 출시\n                : ChatGPT Plus/Pro 공개\n        2025.09 : Sora 2 공개\n                : iOS/Android 앱 출시\n    section 정점\n        2025.12 : Disney 10억$ 파트너십 체결\n                : 200개+ 캐릭터 라이선싱\n    section 종료\n        2026.03.24 : ❌ 전격 서비스 종료\n                   : 비용 vs 수익 불균형\n                   : IPO 준비 비용 절감\n                   : ❌ Disney 투자 무산"
+    }
+  ]
+}
