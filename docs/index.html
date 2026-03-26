@@ -31,6 +31,22 @@
   --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
   --gradient-card: linear-gradient(145deg, #1e293b, #263548);
   --sidebar-width: 280px;
+
+  /* --- New Design Tokens --- */
+  --glass-bg: rgba(30, 41, 59, 0.6);
+  --glass-border: rgba(148, 163, 184, 0.08);
+  --glass-blur: blur(16px) saturate(180%);
+
+  --gradient-border: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3), rgba(16, 185, 129, 0.3));
+  --gradient-accent: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  --gradient-divider: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3), transparent);
+
+  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 40px rgba(0, 0, 0, 0.15);
+  --shadow-card-hover: 0 8px 12px rgba(0, 0, 0, 0.15), 0 20px 60px rgba(0, 0, 0, 0.25);
+  --shadow-glow-blue: 0 0 20px rgba(59, 130, 246, 0.15);
+
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -75,8 +91,11 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
   top: 0; left: 0;
   width: var(--sidebar-width);
   height: 100vh;
-  background: var(--bg-secondary);
-  border-right: 1px solid var(--border-default);
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-right: 1px solid rgba(148, 163, 184, 0.1);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   z-index: 100;
   padding: 1.5rem 0;
@@ -99,6 +118,7 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
 .toc { list-style: none; }
 .toc > li { margin-bottom: 0.25rem; }
 .toc-link {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -106,15 +126,56 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
   color: var(--text-secondary);
   font-size: 0.875rem;
   border-left: 2px solid transparent;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
 }
-.toc-link:hover { color: var(--text-primary); background: rgba(59,130,246,0.05); text-decoration: none; }
+.toc-link:hover {
+  color: var(--text-primary);
+  background: rgba(148, 163, 184, 0.06);
+  padding-left: calc(1.5rem + 4px);
+  text-decoration: none;
+}
 .toc-link.active {
-  color: var(--accent-blue);
+  color: var(--accent-blue-light);
   border-left-color: var(--accent-blue);
-  background: rgba(59,130,246,0.08);
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.12), transparent);
+  box-shadow: inset 3px 0 8px rgba(59, 130, 246, 0.2);
   font-weight: 500;
+}
+
+/* === NAVIGATION: Section Badge === */
+.toc-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.35rem;
+  border-radius: 0.625rem;
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--accent-blue-light);
+  font-size: 0.65rem;
+  font-weight: 600;
+  margin-left: auto;
+  transition: all 0.3s ease;
+}
+.toc-link.active .toc-badge {
+  background: rgba(59, 130, 246, 0.25);
+  color: #fff;
+}
+
+/* === NAVIGATION: Scroll Progress === */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple), var(--accent-emerald));
+  z-index: 1000;
+  transition: width 0.1s linear;
+  will-change: width;
+  pointer-events: none;
 }
 .toc-link .toc-icon { font-size: 1rem; width: 1.25rem; text-align: center; flex-shrink: 0; }
 .toc-sub { list-style: none; }
@@ -133,9 +194,19 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
 
 .section {
   padding: 4rem 0;
-  border-bottom: 1px solid var(--border-default);
+  border-bottom: none;
+  position: relative;
 }
-.section:last-child { border-bottom: none; }
+.section::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-divider);
+}
+.section:last-child::after { display: none; }
 
 /* ============================================
    HAMBURGER MENU (MOBILE)
@@ -212,16 +283,36 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
   padding: 0 2rem;
 }
 .highlight-card {
-  background: var(--gradient-card);
-  border: 1px solid var(--border-default);
-  border-radius: 0.75rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
   padding: 1.5rem;
   text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-smooth);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 .highlight-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  border-color: rgba(59, 130, 246, 0.2);
+}
+.highlight-card:hover::before {
+  opacity: 1;
 }
 .highlight-card .card-number {
   display: inline-flex;
@@ -252,15 +343,19 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
    DATA CARDS
    ============================================ */
 .data-card {
-  background: var(--gradient-card);
-  border: 1px solid var(--border-default);
-  border-radius: 0.75rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: 1rem;
   padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.4s var(--ease-smooth);
+  box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .data-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(59, 130, 246, 0.15);
 }
 
 /* ============================================
@@ -296,7 +391,12 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
   vertical-align: top;
 }
 .report-table tr:last-child td { border-bottom: none; }
-.report-table tr:hover td { background: var(--bg-card-hover); }
+.report-table tr { transition: all 0.2s ease; }
+.report-table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.04) !important;
+  box-shadow: inset 3px 0 0 var(--accent-blue);
+}
+.report-table tbody tr:hover td { background: transparent; }
 .report-table td strong { color: var(--text-primary); }
 
 /* ============================================
@@ -308,6 +408,44 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
   border: 1px solid var(--border-default);
   margin: 1.5rem 0;
   display: block;
+  cursor: zoom-in;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.report-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* === INTERACTIVE: Image Lightbox === */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: zoom-out;
+}
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox-overlay img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+  transform: scale(0.9);
+  transition: transform 0.3s var(--ease-smooth);
+}
+.lightbox-overlay.active img {
+  transform: scale(1);
 }
 
 /* ============================================
@@ -343,6 +481,11 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
   font-weight: 600;
   background: rgba(239,68,68,0.15);
   color: var(--accent-red);
+  animation: riskPulse 2s ease-in-out infinite;
+}
+@keyframes riskPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.2); }
+  50% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0); }
 }
 .risk-medium, .risk-yellow {
   display: inline-block;
@@ -367,29 +510,44 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
    TABS
    ============================================ */
 .tabs {
+  position: relative;
   display: flex;
-  gap: 0.25rem;
-  border-bottom: 1px solid var(--border-default);
+  gap: 0;
+  background: rgba(30, 41, 59, 0.5);
+  border-radius: 0.75rem;
+  padding: 0.25rem;
+  border: 1px solid rgba(148, 163, 184, 0.1);
   margin-bottom: 1.5rem;
   overflow-x: auto;
 }
 .tab-btn {
-  padding: 0.75rem 1.25rem;
-  background: transparent;
+  position: relative;
+  z-index: 1;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
   border: none;
+  background: transparent;
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
+  transition: color 0.3s ease;
   white-space: nowrap;
   font-family: inherit;
 }
 .tab-btn:hover { color: var(--text-primary); }
 .tab-btn.active {
-  color: var(--accent-blue);
-  border-bottom-color: var(--accent-blue);
+  color: var(--text-primary);
+}
+.tab-indicator {
+  position: absolute;
+  bottom: 0.25rem;
+  height: calc(100% - 0.5rem);
+  background: rgba(59, 130, 246, 0.15);
+  border-radius: 0.5rem;
+  transition: left 0.3s var(--ease-smooth),
+              width 0.3s var(--ease-smooth);
+  pointer-events: none;
 }
 .tab-content { display: none; }
 .tab-content.active { display: block; }
@@ -494,6 +652,23 @@ code, .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; }
   gap: 0.75rem;
   margin-bottom: 2rem;
 }
+/* === VISUAL: Section Heading Decoration === */
+.section-header h2,
+.section > h2 {
+  position: relative;
+  padding-left: 1rem;
+}
+.section-header h2::before,
+.section > h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.15em;
+  bottom: 0.15em;
+  width: 4px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, var(--accent-blue), var(--accent-purple));
+}
 .section-header .section-icon {
   font-size: 1.5rem;
   width: 2.5rem;
@@ -530,37 +705,275 @@ sup.fn-ref a:hover { text-decoration: underline; }
    ============================================ */
 .scroll-top {
   position: fixed;
-  bottom: 2rem; right: 2rem;
-  width: 3rem; height: 3rem;
-  background: var(--accent-blue);
-  color: #fff;
-  border: none;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: rgba(59, 130, 246, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: var(--accent-blue-light);
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
+  transform: translateY(10px);
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 200;
-  box-shadow: 0 4px 12px rgba(59,130,246,0.4);
+  z-index: 500;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
-.scroll-top.visible { opacity: 1; visibility: visible; }
-.scroll-top:hover { transform: translateY(-2px); }
+.scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.scroll-top:hover {
+  background: rgba(59, 130, 246, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+}
 .scroll-top svg { width: 20px; height: 20px; }
 
 /* ============================================
-   FADE-IN ANIMATION
+   SCROLL ANIMATIONS
    ============================================ */
 .fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-smooth),
+              transform 0.8s var(--ease-smooth);
+  will-change: transform, opacity;
 }
 .fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+  will-change: auto;
+}
+
+/* Directional reveals */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.8s var(--ease-smooth),
+              transform 0.8s var(--ease-smooth);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.8s var(--ease-smooth),
+              transform 0.8s var(--ease-smooth);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s var(--ease-smooth),
+              transform 0.8s var(--ease-smooth);
+}
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-scale.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0.05s; }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 0.1s; }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 0.15s; }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 0.2s; }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 0.25s; }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 0.3s; }
+.stagger-children.visible > *:nth-child(7) { transition-delay: 0.35s; }
+.stagger-children.visible > *:nth-child(8) { transition-delay: 0.4s; }
+.stagger-children.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === INTERACTIVE: Tooltip === */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  padding: 0.5rem 0.75rem;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 500;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* === BACKGROUND: Gradient Mesh === */
+.bg-mesh {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bg-mesh::before,
+.bg-mesh::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  will-change: transform;
+}
+.bg-mesh::before {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+  top: -200px;
+  right: -100px;
+  animation: meshFloat1 20s ease-in-out infinite alternate;
+}
+.bg-mesh::after {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12), transparent 70%);
+  bottom: -150px;
+  left: -100px;
+  animation: meshFloat2 25s ease-in-out infinite alternate;
+}
+@keyframes meshFloat1 {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(50px, 80px) scale(1.1); }
+  66% { transform: translate(-30px, 40px) scale(0.95); }
+  100% { transform: translate(20px, -20px) scale(1.05); }
+}
+@keyframes meshFloat2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, -40px) scale(1.15); }
+  100% { transform: translate(40px, 60px) scale(0.9); }
+}
+
+/* === BACKGROUND: Hero Floating Orbs === */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+.hero-orb-1 {
+  width: 300px;
+  height: 300px;
+  background: rgba(59, 130, 246, 0.2);
+  top: 10%;
+  left: 15%;
+  animation: orbFloat 15s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 250px;
+  height: 250px;
+  background: rgba(139, 92, 246, 0.15);
+  top: 60%;
+  right: 10%;
+  animation: orbFloat 18s ease-in-out infinite reverse;
+}
+.hero-orb-3 {
+  width: 200px;
+  height: 200px;
+  background: rgba(16, 185, 129, 0.1);
+  bottom: 10%;
+  left: 40%;
+  animation: orbFloat 22s ease-in-out infinite 3s;
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-20px, 30px) scale(0.95); }
+  75% { transform: translate(15px, 15px) scale(1.02); }
+}
+
+/* === Gradient Border Card === */
+.gradient-border-card {
+  position: relative;
+  background: var(--bg-secondary);
+  border-radius: 1rem;
+  padding: 2rem;
+}
+.gradient-border-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 1px;
+  background: var(--gradient-border);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* === PERFORMANCE: Reduce Motion === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .bg-mesh::before,
+  .bg-mesh::after,
+  .hero-orb {
+    animation: none !important;
+  }
+  .fade-in,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* === PERFORMANCE: GPU Hints === */
+.bg-mesh::before,
+.bg-mesh::after,
+.hero-orb,
+.fade-in,
+.reveal-left,
+.reveal-right,
+.reveal-scale,
+.highlight-card,
+.data-card {
+  will-change: transform;
+}
+.fade-in.visible,
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-scale.visible {
+  will-change: auto;
 }
 
 /* ============================================
@@ -583,7 +996,17 @@ sup.fn-ref a:hover { text-decoration: underline; }
   text-align: center;
   color: var(--text-muted);
   font-size: 0.85rem;
-  border-top: 1px solid var(--border-default);
+  border-top: none;
+  position: relative;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--gradient-divider);
 }
 
 /* ============================================
@@ -623,6 +1046,9 @@ sup.fn-ref a:hover { text-decoration: underline; }
 </head>
 <body>
 
+<div class="bg-mesh" aria-hidden="true"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- ============================================
      HAMBURGER BUTTON
      ============================================ -->
@@ -641,7 +1067,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
   <ul class="toc">
     <li><a href="#executive-summary" class="toc-link" data-section="executive-summary"><span class="toc-icon">📋</span> Executive Summary</a></li>
     <li>
-      <a href="#strategic-context" class="toc-link" data-section="strategic-context"><span class="toc-icon">📊</span> 시장 환경</a>
+      <a href="#strategic-context" class="toc-link" data-section="strategic-context"><span class="toc-icon">📊</span> 시장 환경 <span class="toc-badge">3</span></a>
       <ul class="toc-sub">
         <li><a href="#global-market" class="toc-link" data-section="global-market">글로벌 시장 규모</a></li>
         <li><a href="#regional-market" class="toc-link" data-section="regional-market">지역별 시장</a></li>
@@ -649,14 +1075,14 @@ sup.fn-ref a:hover { text-decoration: underline; }
       </ul>
     </li>
     <li>
-      <a href="#technology-landscape" class="toc-link" data-section="technology-landscape"><span class="toc-icon">🔬</span> 기술 성숙도 매트릭스</a>
+      <a href="#technology-landscape" class="toc-link" data-section="technology-landscape"><span class="toc-icon">🔬</span> 기술 성숙도 매트릭스 <span class="toc-badge">2</span></a>
       <ul class="toc-sub">
         <li><a href="#tech-maturity" class="toc-link" data-section="tech-maturity">기술별 성숙도</a></li>
         <li><a href="#build-vs-buy" class="toc-link" data-section="build-vs-buy">Build vs Buy</a></li>
       </ul>
     </li>
     <li>
-      <a href="#sector-trends" class="toc-link" data-section="sector-trends"><span class="toc-icon">🎬</span> 분야별 핵심 동향</a>
+      <a href="#sector-trends" class="toc-link" data-section="sector-trends"><span class="toc-icon">🎬</span> 분야별 핵심 동향 <span class="toc-badge">5</span></a>
       <ul class="toc-sub">
         <li><a href="#film-production" class="toc-link" data-section="film-production">영화/영상</a></li>
         <li><a href="#music-industry" class="toc-link" data-section="music-industry">음악</a></li>
@@ -666,14 +1092,14 @@ sup.fn-ref a:hover { text-decoration: underline; }
       </ul>
     </li>
     <li>
-      <a href="#opportunity-risk" class="toc-link" data-section="opportunity-risk"><span class="toc-icon">⚖️</span> 리스크 &amp; 기회</a>
+      <a href="#opportunity-risk" class="toc-link" data-section="opportunity-risk"><span class="toc-icon">⚖️</span> 리스크 &amp; 기회 <span class="toc-badge">2</span></a>
       <ul class="toc-sub">
         <li><a href="#risk-matrix" class="toc-link" data-section="risk-matrix">리스크 매트릭스</a></li>
         <li><a href="#opportunity-areas" class="toc-link" data-section="opportunity-areas">기회 영역</a></li>
       </ul>
     </li>
     <li>
-      <a href="#strategic-recommendations" class="toc-link" data-section="strategic-recommendations"><span class="toc-icon">🎯</span> 전략 권고</a>
+      <a href="#strategic-recommendations" class="toc-link" data-section="strategic-recommendations"><span class="toc-icon">🎯</span> 전략 권고 <span class="toc-badge">4</span></a>
       <ul class="toc-sub">
         <li><a href="#quick-win" class="toc-link" data-section="quick-win">Quick Win</a></li>
         <li><a href="#short-term" class="toc-link" data-section="short-term">단기 추진</a></li>
@@ -682,14 +1108,14 @@ sup.fn-ref a:hover { text-decoration: underline; }
       </ul>
     </li>
     <li>
-      <a href="#investment-roadmap" class="toc-link" data-section="investment-roadmap"><span class="toc-icon">💰</span> 투자 로드맵</a>
+      <a href="#investment-roadmap" class="toc-link" data-section="investment-roadmap"><span class="toc-icon">💰</span> 투자 로드맵 <span class="toc-badge">2</span></a>
       <ul class="toc-sub">
         <li><a href="#investment-phases" class="toc-link" data-section="investment-phases">투자 프레임</a></li>
         <li><a href="#kpi-framework" class="toc-link" data-section="kpi-framework">KPI</a></li>
       </ul>
     </li>
     <li>
-      <a href="#sora-lessons" class="toc-link" data-section="sora-lessons"><span class="toc-icon">⚠️</span> Sora 교훈</a>
+      <a href="#sora-lessons" class="toc-link" data-section="sora-lessons"><span class="toc-icon">⚠️</span> Sora 교훈 <span class="toc-badge">3</span></a>
       <ul class="toc-sub">
         <li><a href="#sora-timeline" class="toc-link" data-section="sora-timeline">타임라인</a></li>
         <li><a href="#sora-lessons-learned" class="toc-link" data-section="sora-lessons-learned">교훈</a></li>
@@ -717,11 +1143,15 @@ sup.fn-ref a:hover { text-decoration: underline; }
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+    <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+    <canvas id="particleCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;" aria-hidden="true"></canvas>
     <div class="hero-content content-wrapper">
       <div class="hero-badge">Confidential · CTO Report · Version 2.0</div>
       <h1>엔터테인먼트 산업 AI 활용 현황<br>및 전략 보고서</h1>
       <p class="hero-subtitle">보고 대상: CTO / C-Level 경영진 · 2026년 3월 25일</p>
-      <div class="hero-highlights">
+      <div class="hero-highlights stagger-children">
         <div class="highlight-card">
           <div class="card-number">1</div>
           <div class="card-label">시장</div>
@@ -778,7 +1208,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- 1.1 글로벌 시장 -->
       <div id="global-market" class="fade-in">
         <h3>1.1 글로벌 시장 규모</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>출처</th><th>2024년</th><th>2030년 전망</th><th>CAGR</th></tr></thead>
             <tbody>
@@ -787,7 +1217,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
             </tbody>
           </table>
         </div>
-        <div class="callout warning">
+        <div class="callout warning reveal-left">
           ⚠️ 두 기관의 시장 범위 정의가 상이합니다. GVR은 미디어&amp;엔터 전반의 AI 적용을, MnM은 좁은 정의의 엔터테인먼트 AI를 산정합니다. 의사결정 시 <strong>GVR 기준을 권장</strong>합니다. <sup class="fn-ref"><a href="#fn1">[1]</a></sup><sup class="fn-ref"><a href="#fn2">[2]</a></sup>
         </div>
         <h4>보조 전망 데이터</h4>
@@ -801,7 +1231,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- 1.2 지역별 시장 -->
       <div id="regional-market" class="fade-in">
         <h3>1.2 지역별 시장</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>지역</th><th>점유율</th><th>CAGR</th><th>핵심 동인</th></tr></thead>
             <tbody>
@@ -816,7 +1246,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- 1.3 전환 시그널 -->
       <div id="market-signals" class="fade-in">
         <h3>1.3 2026 Q1 시장 전환 시그널</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>시그널</th><th>영향도</th><th>상세</th></tr></thead>
             <tbody>
@@ -845,7 +1275,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <div id="tech-maturity" class="fade-in">
         <h3>2.1 기술별 성숙도 평가</h3>
         <img src="images/tech_maturity_matrix.png" alt="기술 성숙도 매트릭스" class="report-image" loading="lazy">
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>기술</th><th>단계</th><th>전략적 의미</th></tr></thead>
             <tbody>
@@ -866,7 +1296,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <div id="build-vs-buy" class="fade-in">
         <h3>2.2 Build vs Buy 판단 가이드</h3>
         <img src="images/build_vs_buy.png" alt="Build vs Buy 판단 프레임워크" class="report-image" loading="lazy">
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>판단</th><th>기술</th><th>핵심 이유</th></tr></thead>
             <tbody>
@@ -876,7 +1306,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
             </tbody>
           </table>
         </div>
-        <div class="callout">
+        <div class="callout reveal-left">
           <strong>제1 원칙</strong>: "핵심 데이터를 누가 소유하는가?"를 판단 기준으로 삼으십시오.
         </div>
       </div>
@@ -902,7 +1332,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- TAB: 영화/영상 -->
       <div class="tab-content active" id="film-production">
         <h3>3.1 영화/영상 제작</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>기술</th><th>현황</th><th>비용 효과</th></tr></thead>
             <tbody>
@@ -921,7 +1351,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <div class="tab-content" id="music-industry">
         <h3>3.2 음악 산업</h3>
         <h4>패러다임 전환: 불법 학습 → 라이선스 시대</h4>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>사건</th><th>상태</th><th>의미</th></tr></thead>
             <tbody>
@@ -944,7 +1374,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- TAB: 게임 -->
       <div class="tab-content" id="gaming-industry">
         <h3>3.3 게임 산업</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>기술</th><th>현황</th><th>대표 사례</th></tr></thead>
             <tbody>
@@ -961,7 +1391,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- TAB: 방송/스트리밍 -->
       <div class="tab-content" id="broadcast-streaming">
         <h3>3.4 방송/스트리밍</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>기술</th><th>현황</th><th>경제적 가치</th></tr></thead>
             <tbody>
@@ -977,7 +1407,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- TAB: 한국 시장 -->
       <div class="tab-content" id="korea-market">
         <h3>3.5 한국 시장 핵심 동향</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>기업</th><th>최신 AI 전략</th><th>규모</th></tr></thead>
             <tbody>
@@ -1004,7 +1434,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <div id="risk-matrix" class="fade-in">
         <h3>4.1 리스크 매트릭스</h3>
         <img src="images/risk_matrix.png" alt="리스크 평가 매트릭스" class="report-image" loading="lazy">
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>리스크</th><th>수준</th><th>근거</th><th>대응</th></tr></thead>
             <tbody>
@@ -1024,7 +1454,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
       <!-- 4.2 기회 영역 -->
       <div id="opportunity-areas" class="fade-in">
         <h3>4.2 기회 영역</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>기회</th><th>예상 ROI</th><th>시장 근거</th></tr></thead>
             <tbody>
@@ -1058,7 +1488,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
 
       <div class="tab-content active" id="quick-win">
         <h3>5.1 즉시 실행 — Quick Win (Q2 2026)</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>#</th><th>액션</th><th>기대 효과</th><th>예산(추정)</th></tr></thead>
             <tbody>
@@ -1074,7 +1504,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
 
       <div class="tab-content" id="short-term">
         <h3>5.2 단기 추진 (6~12개월)</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>#</th><th>액션</th><th>기대 효과</th></tr></thead>
             <tbody>
@@ -1090,7 +1520,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
 
       <div class="tab-content" id="mid-term">
         <h3>5.3 중기 투자 (1~2년)</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>#</th><th>액션</th><th>기대 효과</th></tr></thead>
             <tbody>
@@ -1105,7 +1535,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
 
       <div class="tab-content" id="monitoring">
         <h3>5.4 모니터링 대상</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>대상</th><th>트리거 이벤트</th></tr></thead>
             <tbody>
@@ -1131,7 +1561,7 @@ sup.fn-ref a:hover { text-decoration: underline; }
 
       <div id="investment-phases" class="fade-in">
         <h3>6.1 단계별 투자 프레임</h3>
-        <div class="mermaid-wrapper">
+        <div class="mermaid-wrapper reveal-scale">
           <pre class="mermaid">
 gantt
     title Investment Roadmap 2026-2027
@@ -1165,7 +1595,7 @@ gantt
 
       <div id="kpi-framework" class="fade-in">
         <h3>6.2 KPI 프레임워크</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>단계</th><th>KPI</th><th>목표</th></tr></thead>
             <tbody>
@@ -1192,7 +1622,7 @@ gantt
 
       <div id="sora-timeline" class="fade-in">
         <h3>타임라인</h3>
-        <div class="mermaid-wrapper">
+        <div class="mermaid-wrapper reveal-scale">
           <pre class="mermaid">
 timeline
     title OpenAI Sora: Rise and Fall
@@ -1216,7 +1646,7 @@ timeline
 
       <div id="sora-lessons-learned" class="fade-in">
         <h3>세 가지 교훈</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>#</th><th>교훈</th><th>시사점</th></tr></thead>
             <tbody>
@@ -1231,7 +1661,7 @@ timeline
       <div id="sora-alternatives" class="fade-in">
         <h3>대안 벤더 비교</h3>
         <img src="images/sora_alternative_strategy.png" alt="Sora Alternative Strategy" class="report-image" loading="lazy">
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>플랫폼</th><th>강점</th><th>약점</th><th>포지션</th></tr></thead>
             <tbody>
@@ -1256,7 +1686,7 @@ timeline
 
       <div id="ai-law-obligations" class="fade-in">
         <h3>8.1 핵심 의무</h3>
-        <div class="table-wrapper">
+        <div class="table-wrapper reveal-scale">
           <table class="report-table">
             <thead><tr><th>의무</th><th>해당 서비스</th><th>시급도</th></tr></thead>
             <tbody>
@@ -1296,7 +1726,7 @@ timeline
           <li>K-콘텐츠 AI 융합 전략 연계</li>
         </ul>
 
-        <div class="callout success">
+        <div class="callout success reveal-left">
           💡 한국 기본법 준수 체계 = EU AI Act(2026.08) 대응의 기반이 됩니다
         </div>
       </div>
@@ -1311,7 +1741,7 @@ timeline
         <h2>9. 주요 기업 AI 투자 현황</h2>
       </div>
       <p style="margin-bottom:0.5rem; font-size:0.85rem; color:var(--text-muted);">팩트체크 완료</p>
-      <div class="table-wrapper">
+      <div class="table-wrapper reveal-scale">
         <table class="report-table">
           <thead><tr><th>기업</th><th>라운드/거래</th><th>금액</th><th>밸류에이션</th><th>출처</th></tr></thead>
           <tbody>
@@ -1426,7 +1856,7 @@ timeline
         </button>
         <div class="accordion-body" style="max-height:1000px;">
           <div class="accordion-body-inner">
-            <div class="table-wrapper">
+            <div class="table-wrapper reveal-scale">
               <table class="report-table">
                 <thead><tr><th>핵심 지표</th><th>수치</th><th>출처</th></tr></thead>
                 <tbody>
@@ -1463,7 +1893,7 @@ timeline
         </button>
         <div class="accordion-body">
           <div class="accordion-body-inner">
-            <div class="table-wrapper">
+            <div class="table-wrapper reveal-scale">
               <table class="report-table">
                 <thead><tr><th>용어</th><th>정의</th></tr></thead>
                 <tbody>
@@ -1498,6 +1928,11 @@ timeline
 <button class="scroll-top" id="scrollTopBtn" aria-label="맨 위로">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
+
+<!-- LIGHTBOX OVERLAY -->
+<div class="lightbox-overlay" id="lightboxOverlay">
+  <img src="" alt="" id="lightboxImage">
+</div>
 
 <!-- MERMAID.JS -->
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
@@ -1595,36 +2030,49 @@ mermaid.initialize({
   });
 
   /* ==========================
-     FADE-IN ANIMATION
+     ENHANCED SCROLL ANIMATIONS
      ========================== */
-  var fadeEls = document.querySelectorAll('.fade-in');
-  var fadeObserver = new IntersectionObserver(function(entries) {
+  var revealObserver = new IntersectionObserver(function(entries, obs) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target);
+        obs.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in, .reveal-left, .reveal-right, .reveal-scale, .stagger-children')
+    .forEach(function(el) { revealObserver.observe(el); });
 
   /* ==========================
-     TABS
+     TABS (Sliding Indicator)
      ========================== */
   document.querySelectorAll('.tabs').forEach(function(tabsContainer) {
+    var indicator = document.createElement('div');
+    indicator.className = 'tab-indicator';
+    tabsContainer.style.position = 'relative';
+    tabsContainer.appendChild(indicator);
+
     var buttons = tabsContainer.querySelectorAll('.tab-btn');
     var parent = tabsContainer.parentElement;
+
+    function moveIndicator(activeBtn) {
+      indicator.style.left = activeBtn.offsetLeft + 'px';
+      indicator.style.width = activeBtn.offsetWidth + 'px';
+    }
+
+    var initialActive = tabsContainer.querySelector('.tab-btn.active');
+    if (initialActive) moveIndicator(initialActive);
 
     buttons.forEach(function(btn) {
       btn.addEventListener('click', function() {
         var tabId = this.getAttribute('data-tab');
 
-        // Deactivate all
         buttons.forEach(function(b) { b.classList.remove('active'); });
         parent.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
 
-        // Activate selected
         this.classList.add('active');
+        moveIndicator(this);
         var target = document.getElementById(tabId);
         if (target) target.classList.add('active');
       });
@@ -1670,6 +2118,168 @@ mermaid.initialize({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
+  /* ==========================
+     SCROLL PROGRESS BAR
+     ========================== */
+  var scrollProgressBar = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', function() {
+    var scrollTop = document.documentElement.scrollTop;
+    var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    scrollProgressBar.style.width = progress + '%';
+  }, { passive: true });
+
+  /* ==========================
+     COUNTER COUNT-UP ANIMATION
+     ========================== */
+  function animateCounter(el) {
+    var target = parseFloat(el.dataset.value);
+    var suffix = el.dataset.suffix || '';
+    var prefix = el.dataset.prefix || '';
+    var duration = 2000;
+    var start = performance.now();
+
+    function update(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = target * eased;
+
+      el.textContent = prefix + (Number.isInteger(target)
+        ? Math.round(current).toLocaleString()
+        : current.toFixed(1)) + suffix;
+
+      if (progress < 1) requestAnimationFrame(update);
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  var counterObserver = new IntersectionObserver(function(entries, obs) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-value]').forEach(function(el) {
+    counterObserver.observe(el);
+  });
+
+  /* ==========================
+     IMAGE LIGHTBOX
+     ========================== */
+  var lightboxOverlay = document.getElementById('lightboxOverlay');
+  var lightboxImage = document.getElementById('lightboxImage');
+
+  document.querySelectorAll('.report-image').forEach(function(img) {
+    img.addEventListener('click', function() {
+      lightboxImage.src = this.src;
+      lightboxImage.alt = this.alt;
+      lightboxOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  lightboxOverlay.addEventListener('click', function() {
+    this.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+      lightboxOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+})();
+
+/* ==========================
+   CANVAS PARTICLE NETWORK
+   ========================== */
+(function() {
+  var canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var ctx = canvas.getContext('2d');
+  var isMobile = window.innerWidth < 768;
+  var particleCount = isMobile ? 15 : 40;
+  var maxDistance = 150;
+  var particles = [];
+  var animationId;
+
+  function resize() {
+    var rect = canvas.parentElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+  }
+
+  function init() {
+    particles = [];
+    for (var i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.3 + 0.1
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(function(p) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(59, 130, 246, ' + p.opacity + ')';
+      ctx.fill();
+    });
+
+    for (var i = 0; i < particles.length; i++) {
+      for (var j = i + 1; j < particles.length; j++) {
+        var dx = particles[i].x - particles[j].x;
+        var dy = particles[i].y - particles[j].y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDistance) {
+          var opacity = (1 - dist / maxDistance) * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = 'rgba(59, 130, 246, ' + opacity + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  resize();
+  init();
+  animate();
+
+  window.addEventListener('resize', function() { resize(); init(); });
+
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+      cancelAnimationFrame(animationId);
+    } else {
+      animate();
+    }
+  });
 })();
 </script>
 
